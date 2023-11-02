@@ -53,7 +53,18 @@ input, button {
 
 .login-content {
     width: 400px;
+    animation: fadeIn 0.5s ease-in-out;
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 
 .login-button {
     width: 300px;
@@ -69,7 +80,12 @@ input, button {
     transition: 1s;
 }
 
+
 .move-right {
-    transform: translateX(100%); /* Move the image 100% to the right */
-    transition: transform 0.5s ease; /* Apply a smooth transition effect */
+    transform: translateX(200%);
+    transition: 0.5s ease;
+}
+
+.fade-out {
+    visibility: hidden;
 }

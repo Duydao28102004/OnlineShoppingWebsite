@@ -8,21 +8,39 @@
     <title>Login</title>
 </head>
 <body>
-    <div class="login-container">
+    <div class="register-container">
         
-        <div class="login-content">
+        <div class="register-content">
             <h1>Shopme</h1>
             <form id="login-form">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
-                <p>Already have an account? <a href="login.html">Login here</a></p>
-                <button class="login-button" type="submit">Register!</button>
+                <p>Already have an account? <a href="login.html" class="loginLink">Login here</a></p>
+                <button class="register-button" type="submit">Register!</button>
             </form>
             <p id="error-message" class="error-message"></p>
         </div>
         <img class="login-image"src="images/images.png">
     </div>
+    <script>
+        const loginLink = document.querySelector(".loginLink"); // Change to .registerLink
+        const loginImage = document.querySelector(".login-image");
+        const loginContent = document.querySelector(".register-content");
+        
+        loginLink.addEventListener("click", (event) => {
+            event.preventDefault();
+            loginImage.classList.toggle("move-left");
+            loginContent.classList.toggle("fade-out");
+            setTimeout(() => {
+                window.location.href = "login.html";
+            }, 500);
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+        const element = document.querySelector(".register-content");
+        element.classList.add("animated");
+        });
+    </script>
 </body>
 </html>
