@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="login-container">
+        <img class="login-image"src="images/images.png">
+        <div class="login-content">
+            <h1>Shopme</h1>
+            <form id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <p>Don't have an account? <a href="register.html">Register here</a></p>
+                <button class="login-button" type="submit">Login</button>
+            </form>
+            <p id="error-message" class="error-message"></p>
+        </div>
+        <script>
+            // JavaScript to move the picture to the right when Register link is clicked
+            const registerLink = document.querySelector("#register-link a");
+            const loginImage = document.querySelector(".login-image");
+            
+            registerLink.addEventListener("click", (event) => {
+                event.preventDefault(); // Prevent the link from navigating
+    
+                // Add a class to the login image to move it to the right
+                loginImage.classList.add("move-right");
+            });
+        </script>
+    </div>
+</body>
+</html>
