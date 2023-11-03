@@ -24,23 +24,7 @@
         </div>
         <img class="login-image"src="images/images.png">
     </div>
-    <script>
-        const loginLink = document.querySelector(".loginLink"); // Change to .registerLink
-        const loginImage = document.querySelector(".login-image");
-        const loginContent = document.querySelector(".register-content");
-        
-        loginLink.addEventListener("click", (event) => {
-            event.preventDefault();
-            loginImage.classList.toggle("move-left");
-            loginContent.classList.toggle("fade-out");
-            setTimeout(() => {
-                window.location.href = "login.html";
-            }, 500);
-        });
-        document.addEventListener("DOMContentLoaded", function() {
-        const element = document.querySelector(".register-content");
-        element.classList.add("animated");
-        });
-    </script>
+
+    <script src="js/register.js"></script>
 </body>
 </html>
