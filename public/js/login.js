@@ -48,19 +48,19 @@ document.addEventListener("DOMContentLoaded", function () {
                         message.innerText = "login successfully, redirect to shipper page";
                         setTimeout(() => {
                             window.location.href = "/";
-                        }, 500);
+                        }, 1000);
                     } else if (data.usertype === "seller") {
                         // Redirect to seller page
                         message.innerText = "login successfully, redirect to seller page";
                         setTimeout(() => {
                             window.location.href = "/";
-                        }, 500);
+                        }, 1000);
                     } else if (data.usertype === "custommer") {
                         // Redirect to custommer page
                         message.innerText = "login successfully, redirect to custommer page";
                         setTimeout(() => {
                             window.location.href = "/";
-                        }, 500);
+                        }, 1000);
                     }
     
                     // Redirect to a different page or display a success message

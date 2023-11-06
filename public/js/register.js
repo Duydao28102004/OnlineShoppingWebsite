@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return response.json().then((data) => {
                     setTimeout(() => {
                         window.location.href = "/login";
-                    }, 500);
+                    }, 1000);
                     // Redirect to a different page or display a success message
                 });
             } else {

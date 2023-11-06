@@ -5,8 +5,8 @@ require("dotenv").config() // load .env variables
 const morgan = require("morgan") //import morgan
 const {log} = require("mercedlogger") // import mercedlogger's log function
 const cors = require("cors") // import cors
-const UserRouter = require("./User") //import User Routes
-const TodoRouter = require("./Todo") // import Todo Routes
+const UserRouter = require("./routes/User") //import User Routes
+const TodoRouter = require("./routes/Todo") // import Todo Routes
 
 // GLOBAL MIDDLEWARE
 app.use(cors()) // add cors headers
@@ -38,5 +38,5 @@ app.use("/todos", TodoRouter) // send all "/todos" request to TodoROuter
 // Start the server
 const port = process.env.PORT || 3000; // Use the provided port or default to 3000
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Server is running on http://localhost:3000`);
 });
