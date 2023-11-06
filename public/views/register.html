@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/register.css">
+    <title>Register</title>
+</head>
+<body>
+    <div class="register-container">
+        
+        <div class="register-content">
+            <h1>Shopme</h1>
+            <form id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <span id="username-error" class="error-message"></span>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <span id="password-error" class="error-message"></span>
+                <label for="usertype">Choose your user role:</label>
+                <select id="usertype" name="usertype" required>
+                    <option value="" disabled selected>--------------User Role--------------</option>
+                    <option value="shipper">shipper</option>
+                    <option value="seller">seller</option>
+                    <option value="custommer">custommer</option>
+                </select>
+                <p>Already have an account? <a href="/" class="loginLink">Login here</a></p>
+                <button class="register-button" type="submit">Register!</button>
+            </form>
+            <p id="error-message" class="error-message"></p>
+        </div>
+        <img class="login-image"src="/images/images.png">
+    </div>
+
+    <script src="/js/register.js"></script>
+</body>
+</html>

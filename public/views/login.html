@@ -4,27 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/register.css">
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
     <title>Login</title>
 </head>
 <body>
-    <div class="register-container">
-        
-        <div class="register-content">
+    <div class="login-container">
+        <img class="login-image" src="/images/images.png">
+        <div class="login-content">
             <h1>Shopme</h1>
             <form id="login-form">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
-                <p>Already have an account? <a href="login.html" class="loginLink">Login here</a></p>
-                <button class="register-button" type="submit">Register!</button>
+                <p>Don't have an account? <a href="/register" class="registerLink" >Register here</a></p>
+                <button class="login-button" type="submit">Login</button>
             </form>
             <p id="error-message" class="error-message"></p>
         </div>
-        <img class="login-image"src="images/images.png">
     </div>
-
-    <script src="js/register.js"></script>
+    
+    <script src="/js/login.js"></script>
 </body>
 </html>

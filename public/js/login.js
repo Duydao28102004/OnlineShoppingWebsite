@@ -7,7 +7,7 @@ registerLink.addEventListener("click", (event) => {
     loginImage.classList.toggle("move-right");
     loginContent.classList.toggle("fade-out");
     setTimeout(() => {
-        window.location.href = "register.html";
+        window.location.href = "/register";
     }, 500);
 });
 
