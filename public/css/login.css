@@ -90,3 +90,12 @@ input, button {
 .fade-out {
     visibility: hidden;
 }
+
+@media (max-width: 768px) {
+    .login-image {
+        display: none;
+    }
+    .login-content {
+        padding-left: 10px;
+    }
+}
