@@ -5,8 +5,8 @@ require("dotenv").config() // load .env variables
 const morgan = require("morgan") //import morgan
 const {log} = require("mercedlogger") // import mercedlogger's log function
 const cors = require("cors") // import cors
-const UserRouter = require("./routes/User") //import User Routes
-const TodoRouter = require("./routes/Todo") // import Todo Routes
+const UserRouter = require("./User") //import User Routes
+const TodoRouter = require("./Todo") // import Todo Routes
 
 // GLOBAL MIDDLEWARE
 app.use(cors()) // add cors headers
