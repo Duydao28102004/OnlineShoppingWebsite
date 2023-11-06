@@ -12,7 +12,7 @@ loginLink.addEventListener("click", (event) => {
     loginImage.classList.toggle("move-left");
     registerContent.classList.toggle("fade-out");
     setTimeout(() => {
-        window.location.href = "/";
+        window.location.href = "/login";
     }, 500);
 });
 
@@ -46,5 +46,45 @@ passwordInput.addEventListener("input", () => {
             }
         }
     }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const registerForm = document.getElementById("register-form");
+    const message = document.getElementById("error-message");
+
+
+    registerForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const registerUsername = document.getElementById("username").value;
+        const registerPassword = document.getElementById("password").value;
+        const registerUsertype = document.getElementById("usertype").value;
+
+        // Send a POST request to the register route
+        fetch("/user/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username: registerUsername, password: registerPassword, usertype: registerUsertype }),
+        })
+        .then((response) => {
+            if (response.ok) {
+                // Handle successful register here
+                message.innerText = "register successfully";
+                return response.json().then((data) => {
+                    setTimeout(() => {
+                        window.location.href = "/login";
+                    }, 500);
+                    // Redirect to a different page or display a success message
+                });
+            } else {
+                // Handle other non-400 errors
+                console.error("Error:", response.status);
+            }
+        })
+        .catch((error) => {
+            console.error("Network Error:", error);
+        });
+    });
 });
 
