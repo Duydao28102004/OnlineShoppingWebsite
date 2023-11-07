@@ -68,18 +68,24 @@ document.addEventListener("DOMContentLoaded", function () {
             body: JSON.stringify({ username: registerUsername, password: registerPassword, usertype: registerUsertype }),
         })
         .then((response) => {
-            if (response.ok) {
-                // Handle successful register here
-                message.innerText = "register successfully";
+            if (response.status === 400) {
                 return response.json().then((data) => {
-                    setTimeout(() => {
-                        window.location.href = "/login";
-                    }, 1000);
-                    // Redirect to a different page or display a success message
+                    message.innerText = "This username is already exist";
                 });
             } else {
-                // Handle other non-400 errors
-                console.error("Error:", response.status);
+                if (response.ok) {
+                    // Handle successful register here
+                    message.innerText = "register successfully";
+                    return response.json().then((data) => {
+                        setTimeout(() => {
+                            window.location.href = "/login";
+                        }, 1000);
+                        // Redirect to a different page or display a success message
+                    });
+                } else {
+                    // Handle other non-400 errors
+                    console.error("Error:", response.status);
+                }
             }
         })
         .catch((error) => {
