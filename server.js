@@ -32,6 +32,10 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/views', 'index.html'));
 });
 
+app.get('/product', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/views', 'product.html'));
+});
+
 app.use("/user", UserRouter) // send all "/user" requests to UserRouter for routing
 app.use("/todos", TodoRouter) // send all "/todos" request to TodoROuter
 
