@@ -30,7 +30,10 @@ form {
 label, input, button {
     margin: 5px 0;
 }
-
+select { 
+    display: flex;
+    width: 50%; 
+}
 input, button {
     padding: 10px;
 }
@@ -86,4 +89,13 @@ input, button {
 
 .fade-out {
     visibility: hidden;
+}
+
+@media (max-width: 768px) {
+    .login-image {
+        display: none;
+    }
+    .register-content {
+        padding-right: 10px;
+    }
 }
