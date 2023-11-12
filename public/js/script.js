@@ -17,4 +17,18 @@ function displayProducts(products) {
     });
 }
 
-// ???
+// display order
+function displayOrder(order) {
+    const orderContainer = document.querySelector(".order-container");
+    orderContainer.innerHTML = "";
+    order.forEach((item) => {
+        orderContainer.innerHTML += `
+        <div class="order">
+            <h3>${item.name}</h3>
+            <p>Price: ${item.price}</p>
+            <p>Quantity: ${item.quantity}</p>
+            <button onclick="removeFromCart(${item.id})">Remove</button>
+        </div>
+        `;
+    });
+}
