@@ -34,6 +34,10 @@ app.get('/register', (req, res) => {
   res.render('pages/register', { pageTitle: 'Register' });
 });
 
+app.get('/about', (req, res) => {
+  res.render('pages/about', { pageTitle: 'About' });
+});
+
 app.use("/user", UserRouter) // send all "/user" requests to UserRouter for routing
 app.use("/todos", TodoRouter) // send all "/todos" request to TodoROuter
 
