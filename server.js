@@ -14,22 +14,28 @@ app.use(morgan("tiny")) // log the request for debugging
 app.use(express.json()) // parse json bodies
 app.use(express.static(path.join(__dirname, "public"), { "extensions": ["html", "htm", "js"] }));
 
+// Set ejs view engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'public', 'views'));
+
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Define a route for the login page
-app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/views', 'login.html'));
-});
-
-// Define a route for the register page
-app.get('/register', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/views', 'register.html'));
-});
-
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/views', 'index.html'));
+  res.render('pages/index', { pageTitle: 'Homepage' });
+});
+
+app.get('/login', (req, res) => {
+  res.render('pages/login', { pageTitle: 'Login' });
+});
+
+app.get('/register', (req, res) => {
+  res.render('pages/register', { pageTitle: 'Register' });
+});
+
+app.get('/about', (req, res) => {
+  res.render('pages/about', { pageTitle: 'About' });
 });
 
 app.use("/user", UserRouter) // send all "/user" requests to UserRouter for routing
