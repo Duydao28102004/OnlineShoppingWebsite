@@ -32,6 +32,10 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/views', 'index.html'));
 });
 
+// set the engine to EJS
+app.set("view engine", "ejs")
+app.set('views', path.join(__dirname, 'public', 'views'));
+
 app.use("/user", UserRouter) // send all "/user" requests to UserRouter for routing
 app.use("/todos", TodoRouter) // send all "/todos" request to TodoROuter
 
