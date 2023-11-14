@@ -39,7 +39,7 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/product', (req, res) => {
-  res.render('pages/about', { pageTitle: 'About' });
+  res.render('pages/product', { pageTitle: 'Products' });
 });
 
 app.use("/user", UserRouter) // send all "/user" requests to UserRouter for routing
