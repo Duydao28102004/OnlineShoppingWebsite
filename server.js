@@ -18,23 +18,31 @@ app.use(express.static(path.join(__dirname, "public"), { "extensions": ["html", 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Define a route for the login page
-app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/views', 'login.html'));
-});
-
-// Define a route for the register page
-app.get('/register', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/views', 'register.html'));
-});
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/views', 'index.html'));
-});
 
 // set the engine to EJS
 app.set("view engine", "ejs")
 app.set('views', path.join(__dirname, 'public', 'views'));
+
+// route definitions
+app.get('/', (req, res) => {
+  res.render('pages/index', { pageTitle: 'Homepage' });
+});
+
+app.get('/login', (req, res) => {
+  res.render('pages/login', { pageTitle: 'Login' });
+});
+
+app.get('/register', (req, res) => {
+  res.render('pages/register', { pageTitle: 'Register' });
+});
+
+app.get('/about', (req, res) => {
+  res.render('pages/about', { pageTitle: 'About' });
+});
+
+app.get('/product', (req, res) => {
+  res.render('pages/product', { pageTitle: 'Products' });
+});
 
 app.use("/user", UserRouter) // send all "/user" requests to UserRouter for routing
 app.use("/todos", TodoRouter) // send all "/todos" request to TodoROuter

@@ -32,3 +32,8 @@ function displayOrder(order) {
         `;
     });
 }
+
+// lead to order details page
+function orderDetails() {
+    window.location.href = "/order";
+}
