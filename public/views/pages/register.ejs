@@ -13,7 +13,7 @@
         
         <div class="register-content">
             <h1>Shopme</h1>
-            <form id="register-form">
+            <form id="register-form" action="/register" method="POST">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
                 <span id="username-error" class="error-message"></span>
@@ -30,7 +30,7 @@
                 <p>Already have an account? <a href="/login" class="loginLink">Login here</a></p>
                 <button class="register-button" type="submit">Register!</button>
             </form>
-            <p id="error-message" class="error-message"></p>
+            <p id="error-message" class="error-message"><%= error %></p>
         </div>
         <img class="login-image"src="/images/images.png">
     </div>

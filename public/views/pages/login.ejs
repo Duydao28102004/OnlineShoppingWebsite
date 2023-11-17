@@ -13,7 +13,7 @@
         <img class="login-image" src="/images/images.png">
         <div class="login-content">
             <h1>Shopme</h1>
-            <form id="login-form">
+            <form id="login-form" action="/login" method="POST">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
                 <label for="password">Password:</label>
@@ -21,7 +21,7 @@
                 <p>Don't have an account? <a href="/register" class="registerLink" >Register here</a></p>
                 <button class="login-button" type="submit">Login</button>
             </form>
-            <p id="error-message" class="error-message"></p>
+            <p id="error-message" class="error-message"><%= error %></p>
         </div>
     </div>
     
