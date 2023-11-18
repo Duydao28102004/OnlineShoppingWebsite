@@ -65,7 +65,7 @@ app.post('/login', async (req, res) => {
 });
 
 app.get('/register', (req,res) => {
-  res.render('pages/register', { pageTitle: 'Register' });
+  res.render('pages/register', { pageTitle: 'Register', error: null });
 });
 
 app.post("/register", async (req, res) => {
@@ -81,6 +81,17 @@ app.post("/register", async (req, res) => {
   } catch (error) {
     res.status(400).json({ error });
   }
+});
+
+app.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Error destroying session:', err);
+      res.sendStatus(500);
+    } else {
+      res.redirect('/login'); // Redirect to the login page or any other page
+    }
+  });
 });
 
 const port = process.env.PORT || 3000; // Use the provided port or default to 3000
