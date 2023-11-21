@@ -21,3 +21,22 @@ $(document).on('click', '.change-order-status', function () {
     });
 });
 
+// display order to shipper
+$(document).on('click', '.display-order', function () {
+    var order_id = $(this).attr('data-order-id');
+    var data = {
+        order_id: order_id
+    };
+    $.ajax({
+        url: '/shipper/display-order',
+        type: 'POST',
+        data: data,
+        success: function (response) {
+            if (response.status == 'success') {
+                $('#order-detail').html(response.html);
+            } else {
+                alert(response.message);
+            }
+        }
+    });
+});

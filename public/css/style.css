@@ -115,3 +115,36 @@ img:hover  {
     height: 300px;
     border-radius: 100%;
 }
+
+/* progress bar */ 
+.progress {
+    width: 100%;
+    height: 30px;
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
+.progress-bar {
+}
+
+@media only screen and (max-width: 600px) {
+    .login-container {
+        flex-direction: column;
+    }
+
+    .login-image {
+        border-radius: 10px 10px 0px 0px;
+        padding-right: 0px;
+    }
+
+    .login-content {
+        width: 100%;
+    }
+
+    .login-button {
+        width: 100%;
+        margin-left: 0px;
+    }
+}
+
+
