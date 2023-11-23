@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <title>Shipper's Area</title>
+</head>
+<body>
+    <%- include('../components/header') %>
+    <h1><strong>Shopme Shipping Center</strong></h1>
+    <h2>Shipper Workstation</h2>
+    <label for="location">Location:</label>
+    <select name="location" id="location" required>
+        <option value="hanoi">Hanoi</option>
+        <option value="hochiminh">Ho Chi Minh City</option>
+        <option value="danang">Danang</option>
+    </select>
+    <br><br>
+    <button type="submit">Display My Shifts</button>
+    <!-- Display Order from the Database -->
+    <table id="order-table">
+        <tr>
+            <th>Order ID</th>
+            <th>Customer Name</th>
+            <th>Customer Address</th>
+            <th>Customer Phone</th>
+            <th>Order Date</th>
+            <th>Order Status</th>
+            <th>Order Total</th>
+            <th>Order Details</th>
+        </tr>
+        <% for (let i = 0; i < orders.length; i++) { %>
+            <tr>
+                <td><%= orders[i].order_id %></td>
+                <td><%= orders[i].customer_name %></td>
+                <td><%= orders[i].customer_address %></td>
+                <td><%= orders[i].customer_phone %></td>
+                <td><%= orders[i].order_date %></td>
+                <td><%= orders[i].order_status %></td>
+                <td><%= orders[i].order_total %></td>
+                <td><a href="models/Shipper">View Order Details</a></td>
+            </tr>
+        <% } %>
+    <%- include('../components/footer') %>
+</body>
+</html>

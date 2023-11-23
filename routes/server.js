@@ -44,8 +44,14 @@ app.get('/product', (req, res) => {
   res.render('pages/product', { pageTitle: 'Products' });
 });
 
+app.get('/shipper', (req, res) => {
+  res.render('pages/shipper', { pageTitle: 'Shipper' });
+});
+
 app.use("/user", UserRouter) // send all "/user" requests to UserRouter for routing
 app.use("/todos", TodoRouter) // send all "/todos" request to TodoROuter
+
+// get data from the MongoDB database
 
 // Start the server
 const port = process.env.PORT || 3000; // Use the provided port or default to 3000
