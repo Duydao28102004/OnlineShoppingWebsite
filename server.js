@@ -7,6 +7,7 @@ const {log} = require("mercedlogger") // import mercedlogger's log function
 const cors = require("cors") // import cors
 const UserRouter = require("./routes/User") //import User Routes
 const TodoRouter = require("./routes/Todo") // import Todo Routes
+const ProductRouter = require("./routes/ProductRouter") // import Product Routes
 
 // GLOBAL MIDDLEWARE
 app.use(cors()) // add cors headers
@@ -44,6 +45,7 @@ app.get('/product', (req, res) => {
 
 app.use("/user", UserRouter) // send all "/user" requests to UserRouter for routing
 app.use("/todos", TodoRouter) // send all "/todos" request to TodoROuter
+app.use("/product", ProductRouter) // send all "/product" request to ProductRouter
 
 // Start the server
 const port = process.env.PORT || 3000; // Use the provided port or default to 3000

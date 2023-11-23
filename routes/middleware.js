@@ -28,7 +28,23 @@ const isLoggedIn = async (req, res, next) => {
   }
 };
 
+/* const authMiddleWare = (req, res) => {
+  console.log('checkToken', req.headers.token)
+  const token = req.headers.token.split(' ')[1]
+  jwt.verify(token, process.env.SECRET, function (err, product){
+    if(err){
+      return res.status(404).json({
+        message: 'The authemtication',
+        status: 'ERROR'
+      }) 
+    }
+    const {payload} = product
+    
+  });
+} */
+
 // export custom middleware
 module.exports = {
   isLoggedIn,
+  //authMiddleWare
 };
