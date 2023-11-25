@@ -65,7 +65,7 @@ app.post('/login', async (req, res) => {
 });
 
 app.get('/register', (req,res) => {
-  res.render('pages/register', { pageTitle: 'Register' });
+  res.render('pages/register', { pageTitle: 'Register', error: null });
 });
 
 app.post("/register", async (req, res) => {
