@@ -83,6 +83,17 @@ app.post("/register", async (req, res) => {
   }
 });
 
+app.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Error destroying session:', err);
+      res.sendStatus(500);
+    } else {
+      res.redirect('/login'); // Redirect to the login page or any other page
+    }
+  });
+});
+
 const port = process.env.PORT || 3000; // Use the provided port or default to 3000
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:3000`);
