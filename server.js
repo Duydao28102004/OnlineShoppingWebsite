@@ -1,4 +1,5 @@
 const User = require('./models/User');
+const Order = require('./models/Order');
 const bcrypt = require('bcrypt');
 const express = require('express');
 const app = express();
@@ -23,14 +24,7 @@ app.use(express.urlencoded({extended : false}));
 
 app.get('/', requireLogin, (req,res) => {
   const user = req.session.user;
-  // Check if the user is logged in
-  if (user) {
-    // Render the homepage with user information
-    res.render('pages/index', { pageTitle: 'Homepage', user});
-  } else {
-    // Redirect to the login page if the user is not logged in
-    res.redirect('/login');
-  }
+  res.render('pages/index', { pageTitle: 'Homepage', user});
 });
 
 app.get('/login', (req,res) => {
@@ -46,7 +40,7 @@ app.post('/login', async (req, res) => {
       if (result) {
         // Successful login
         req.session.user = { username: user.username, usertype: user.usertype};
-        res.redirect('/');
+        res.redirect('/redirect');
         console.log("Successfully logged in");
         return;
       } else {
@@ -64,24 +58,50 @@ app.post('/login', async (req, res) => {
   }
 });
 
+app.get('/redirect', requireLogin, (req, res) => {
+  const user = req.session.user;
+  if (user.usertype === 'shipper') {
+    res.redirect('/shipper')
+  } else if (user.usertype === 'custommer') {
+    res.redirect('/custommer')
+  } else if (user.usertype === 'seller') {
+    res.redirect('/seller')
+  } else {
+    res.redirect('/')
+  }
+})
+
 app.get('/register', (req,res) => {
   res.render('pages/register', { pageTitle: 'Register', error: null });
 });
 
-app.post("/register", async (req, res) => {
+app.post('/register', async (req, res) => {
   try {
     // hash the password
     req.body.password = await bcrypt.hash(req.body.password, 10);
     // create a new user
     const user = await User.create(req.body);
-    // send new user as response
-    res.json(user);
     res.redirect('/login');
     console.log("Successfully register a new account");
   } catch (error) {
     res.status(400).json({ error });
   }
 });
+
+app.get('/shipper', requireLogin, async (req, res) => {
+  const user = req.session.user;
+  if (user) {
+    try {
+      const orders = await Order.findOrdersByStatus('delivery');
+      res.render('pages/shipper', {pageTitle: 'Shipper', user, orders })
+    } catch {
+      console.error('Error fetching orders:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  } else {
+    res.redirect('/')
+  }
+})
 
 app.get('/logout', (req, res) => {
   req.session.destroy((err) => {
@@ -92,6 +112,23 @@ app.get('/logout', (req, res) => {
       res.redirect('/login'); // Redirect to the login page or any other page
     }
   });
+});
+
+app.get('/testaddorder', (req, res) => {
+  res.render('pages/testaddorder', { pageTitle: 'Add New Order'});
+});
+
+app.post('/testaddorder', async (req, res) => {
+  try {
+      // Use insertMany with ordered: false to bypass unique constraints
+      const orders = await Order.create(req.body);
+      console.log('Orders created successfully');
+      res.redirect('/login');
+  } catch (error) {
+      // Handle errors appropriately
+      console.error('Error adding new order:', error);
+      res.status(500).send('Internal Server Error');
+  }
 });
 
 const port = process.env.PORT || 3000; // Use the provided port or default to 3000
