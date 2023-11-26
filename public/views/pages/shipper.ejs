@@ -42,6 +42,22 @@
                 <td><a href="models/Shipper">View Order Details</a></td>
             </tr>
         <% } %>
+    </table>
+    <br><br>
+    <h2>Update Orders</h2>
+    <!-- Shipper update order -->
+    <form action="models/Shipper" method="POST">
+        <label for="order-id">Order ID:</label>
+        <input type="text" id="order-id" name="order-id" required>
+        <br><br>
+        <label for="order-status">Order Status:</label>
+        <select name="order-status" id="order-status" required>
+            <option value="pending">Pending</option>
+            <option value="shipped">Shipped</option>
+            <option value="delivered">Delivered</option>
+        </select>
+        <br><br>
+        <button type="submit">Update Order Status</button>
     <%- include('../components/footer') %>
 </body>
 </html>
