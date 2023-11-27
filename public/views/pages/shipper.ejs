@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/shipper.css">
     <title>Shipper's Area</title>
 </head>
 <body>
     <%- include('../components/header') %>
+    <div class="usercontainer">
+        <h1>Welcome back, <%= user.username %></h1>
+        <img src="/images/icon.png">
+    </div>
     <h1><strong>Shopme Shipping Center</strong></h1>
     <h2>Shipper Workstation</h2>
     <label for="location">Location:</label>
@@ -46,18 +50,22 @@
     <br><br>
     <h2>Update Orders</h2>
     <!-- Shipper update order -->
-    <form action="models/Shipper" method="POST">
-        <label for="order-id">Order ID:</label>
-        <input type="text" id="order-id" name="order-id" required>
-        <br><br>
-        <label for="order-status">Order Status:</label>
-        <select name="order-status" id="order-status" required>
-            <option value="pending">Pending</option>
-            <option value="shipped">Shipped</option>
-            <option value="delivered">Delivered</option>
-        </select>
-        <br><br>
-        <button type="submit">Update Order Status</button>
+    <div class="components">
+        <div class="ordercontainer">
+            <h1>Orders</h1>
+            <% orders.forEach(order => { %>
+            <div class="orderdetail">
+                <div class="orderinfo">
+                    <p>Custommer name: <%= order.customername %></p>
+                    <p>Product: <%= order.products %></p>
+                    <p>Address: <%= order.address %></p>
+                    <p>Order status: <%= order.status %></p>
+                </div>
+                <button>Completed</button>
+            </div>
+            <% }) %>
+        </div>
+    </div>
     <%- include('../components/footer') %>
 </body>
 </html>

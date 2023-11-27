@@ -32,8 +32,21 @@ app.get('/login', (req, res) => {
   res.render('pages/login', { pageTitle: 'Login' });
 });
 
-app.get('/register', (req, res) => {
-  res.render('pages/register', { pageTitle: 'Register' });
+app.get('/register', (req,res) => {
+  res.render('pages/register', { pageTitle: 'Register', error: null });
+});
+
+app.post('/register', async (req, res) => {
+  try {
+    // hash the password
+    req.body.password = await bcrypt.hash(req.body.password, 10);
+    // create a new user
+    const user = await User.create(req.body);
+    res.redirect('/login');
+    console.log("Successfully register a new account");
+  } catch (error) {
+    res.status(400).json({ error });
+  }
 });
 
 app.get('/about', (req, res) => {
@@ -45,11 +58,22 @@ app.get('/product', (req, res) => {
 });
 
 app.get('/shipper', (req, res) => {
-  res.render('pages/shipper', { pageTitle: 'Shipper' });
+  const user = req.session.user;
+  if (user) {
+    try {
+      const orders = await Order.findOrdersByStatus('delivery');
+      res.render('pages/shipper', {pageTitle: 'Shipper', user, orders })
+    } catch {
+      console.error('Error fetching orders:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  } else {
+    res.redirect('/')
+  }
 });
 
 app.use("/user", UserRouter) // send all "/user" requests to UserRouter for routing
-app.use("/todos", TodoRouter) // send all "/todos" request to TodoROuter
+app.use("/todos", TodoRouter) // send all "/todos" request to TodoRouter
 
 // get data from the MongoDB database
 
