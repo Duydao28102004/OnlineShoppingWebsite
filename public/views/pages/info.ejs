@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <%- include('../components/header') %>
+    <div class="main">
+        <div class="header"></div>
+        <div class="body">
+            <div class="products">
+                <div class="column-left">
+                    <div class="main-image">
+                        <img id="main-img" src="https://kingshoes.vn/data/upload/media/sneaker-c77124-super-star-adidas-kingshoes.vn-tphcm-tanbinh-27-1628053703.jpeg" alt="">
+                    </div>
+                    <div class="sub-image">
+                        <img class="sub-img" src="https://kingshoes.vn/data/upload/media/fx5605-gia%CC%80y-adidas-rod-laver-chi%CC%81nh-ha%CC%83ng-de%CC%82%CC%81n-king-shoes-2.jpg" alt="">
+                        <img class="sub-img" src="https://kingshoes.vn/data/upload/media/fx5605-gia%CC%80y-adidas-rod-laver-chi%CC%81nh-ha%CC%83ng-de%CC%82%CC%81n-king-shoes-3.jpg" alt="">
+                        <img class="sub-img" src="https://kingshoes.vn/data/upload/media/fx5605-gia%CC%80y-adidas-rod-laver-chi%CC%81nh-ha%CC%83ng-de%CC%82%CC%81n-king-shoes-5.jpg" alt="">
+                        <img class="sub-img" src="https://kingshoes.vn/data/upload/media/fx5605-gia%CC%80y-adidas-rod-laver-chi%CC%81nh-ha%CC%83ng-de%CC%82%CC%81n-king-shoes-1.jpg" alt="">
+                    </div>
+                </div>
+                <div class="column-right">
+                    <a>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </a>
+                    <a class="product-name">ROD LAVER</a>
+                    <a class="product-price">2,200,000 Đ</a>
+                    <div class="selector">
+                        <div class="size-selector">
+                            <div class="title">Chọn size:</div>
+                            <select>
+                                <option value="">----Choose Size ----</option>
+                                <option value="">38</option>
+                                <option value="">39</option>
+                                <option value="">40</option>
+                                <option value="">41</option>
+                                <option value="">42</option>
+                                <option value="">43</option>
+                            </select>
+                        </div>
+                        <div class="number">
+                            <div class="title">Quantity:</div>
+                            <div class="count-number">
+                                <input class="minus builder" onclick="tru()" type="button" value="-">
+                                <input aria-label="quantity" id="value" class="input-qty" max="10" min="0" name="" type="number" value="1">
+                                <input class="plus builder" onclick="cong()" type="button" value="+">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="add-to-cart">Add to cart</button>
+                    <div>Product Information below ^^</div>
+                </div>
+            </div>
+            <div class="related">
+                <div class="text">
+                    ----Related Products----
+                </div>
+                <ul class="related-products">
+                    <li>
+                        <div class="related-product-item">
+                            <div class="image-top">
+                                <a href="#" class="thumbs-up">
+                                    <img src="https://kingshoes.vn/data/upload/media/sneaker-c77124-super-star-adidas-kingshoes.vn-tphcm-tanbinh-27-1628053703.jpeg" alt="">
+                                    <a href="" class="buy-now">Mua Ngay</a>
+                                </a>
+
+                            </div>
+                            <div class="information">
+                                <a href="#"class="related-product-sub-title">Sneaker</a>
+                                <a href="#"class="related-product-name">Sneaker</a>
+                                <a href="">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                </a>
+                                <a href="#"class="related-product-price">Sneaker</a>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <div class="related-product-item">
+                            <div class="image-top">
+                                <a href="#" class="thumbs-up">
+                                    <img src="https://kingshoes.vn/data/upload/media/sneaker-c77124-super-star-adidas-kingshoes.vn-tphcm-tanbinh-27-1628053703.jpeg" alt="">
+                                    <a href="" class="buy-now">Mua Ngay</a>
+                                </a>
+
+                            </div>
+                            <div class="information">
+                                <a href="#"class="related-product-sub-title">Sneaker</a>
+                                <a href="#"class="related-product-name">Sneaker</a>
+                                <a href="">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                </a>
+                                <a href="#"class="related-product-price">Sneaker</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="related-product-item">
+                            <div class="image-top">
+                                <a href="#" class="thumbs-up">
+                                    <img src="https://kingshoes.vn/data/upload/media/sneaker-c77124-super-star-adidas-kingshoes.vn-tphcm-tanbinh-27-1628053703.jpeg" alt="">
+                                    <a href="" class="buy-now">Mua Ngay</a>
+                                </a>
+
+                            </div>
+                            <div class="information">
+                                <a href="#"class="related-product-sub-title">Sneaker</a>
+                                <a href="#"class="related-product-name">Sneaker</a>
+                                <a href="">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                </a>
+                                <a href="#"class="related-product-price">Sneaker</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="related-product-item">
+                            <div class="image-top">
+                                <a href="#" class="thumbs-up">
+                                    <img src="https://kingshoes.vn/data/upload/media/sneaker-c77124-super-star-adidas-kingshoes.vn-tphcm-tanbinh-27-1628053703.jpeg" alt="">
+                                    <a href="" class="buy-now">Mua Ngay</a>
+                                </a>
+
+                            </div>
+                            <div class="information">
+                                <a href="#"class="related-product-sub-title">Sneaker</a>
+                                <a href="#"class="related-product-name">Sneaker</a>
+                                <a href="">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                </a>
+                                <a href="#"class="related-product-price">Sneaker</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="./edit.js"></script>
+</body>
+</html>

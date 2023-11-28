@@ -57,6 +57,10 @@ app.get('/product', (req, res) => {
   res.render('pages/product', { pageTitle: 'Products' });
 });
 
+app.get('/info', (req, res) => {
+  res.render('pages/info', { pageTitle: 'Information' });
+}
+
 app.get('/shipper', (req, res) => {
   const user = req.session.user;
   if (user) {
@@ -72,10 +76,19 @@ app.get('/shipper', (req, res) => {
   }
 });
 
+// connect the information of product details page to the product page
+app.get('/product/:id', (req, res) => {
+  const id = req.params.id;
+  const product = products.find(product => product.id === id);
+  res.render('pages/info', { pageTitle: 'Info', product });
+});
+
+// create dynamic HTML on the product.ejs page
+
+
 app.use("/user", UserRouter) // send all "/user" requests to UserRouter for routing
 app.use("/todos", TodoRouter) // send all "/todos" request to TodoRouter
 
-// get data from the MongoDB database
 
 // Start the server
 const port = process.env.PORT || 3000; // Use the provided port or default to 3000

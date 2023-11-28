@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Tracking Progress</title>
+    <link rel="stylesheet" href="/public/css/progress.css">
+</head>
+<body>
+    <%- include('../components/header') %>
+    <div>
+        <div class="container">
+            <div class="details">
+                <div class="order">
+                    <h1>order <span> #001</span></h1>
+                </div>
+                <div class="date">
+                    <p>Expected Arrival 22/11/2023</p>
+                    <p>UPS <b>19003848576</b></p>
+                </div>
+            </div>
+
+            <div class="track">
+                <ul id="progress" class="text-center">
+                    <li class="active"></li>
+                    <li class="active"></li>
+                    <li class="active"></li>
+                    <li class="active"></li>
+                </ul>
+            </div>
+
+            <div class="lists">
+                <div class="list">
+                    <img src="https://cdn-icons-png.flaticon.com/512/5188/5188372.png" alt="">
+                    <p>Order <br>Processed</p>
+                </div>
+                <div class="list">
+                    <img src="https://cdn0.iconfinder.com/data/icons/auction-and-competition-outline/64/return_policy-return-product-package-delivery-logistic-512.png" alt="">
+                    <p>Order <br>Shipped</p>
+                </div>
+                <div class="list">
+                    <img src="https://www.pngitem.com/pimgs/m/354-3544619_delivery-png-download-fast-delivery-icon-png-transparent.png" alt="">
+                    <p>Order <br>On the Way</p>
+                </div>
+                <div class="list">
+                    <img src="https://e7.pngegg.com/pngimages/77/976/png-clipart-computer-icons-completed-icon-text-service.png" alt="">
+                    <p>Order <br>Arrived</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
