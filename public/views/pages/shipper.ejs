@@ -10,6 +10,7 @@
 <body>
     <%- include('../components/header') %>
     <div class="components">
+        <%- include('../components/userdetail') %>
         <div class="ordercontainer">
             <h1>Orders</h1>
             <% if (orders.length > 0) { %>
@@ -21,7 +22,7 @@
                             <p>Address: <%= order.address %></p>
                             <p>Order status: <%= order.status %></p>
                         </div>
-                        <form action="/completeOrder" method="POST">
+                        <form action="/shipper" method="POST">
                             <!-- Add a hidden input field to store the orderId -->
                             <input type="hidden" name="orderId" value="<%= order._id %>">
                             <button type="submit">Mark as Completed</button>
@@ -31,13 +32,6 @@
             <% } else { %>
                 <p>No orders available.</p>
             <% } %>
-        </div>
-        <div class="usercontainer">
-            <h1>Welcome back, <%= user.username %></h1>
-            <img src="/images/icon.png">
-            <form action="/logout" method="GET">
-                <button type="submit">Logout</button>
-            </form>
         </div>
     </div>
 </body>

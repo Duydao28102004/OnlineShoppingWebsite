@@ -1,5 +1,6 @@
 const User = require('./models/User');
 const Order = require('./models/Order');
+const Product = require('./models/Product');
 const bcrypt = require('bcrypt');
 const express = require('express');
 const app = express();
@@ -39,7 +40,8 @@ app.post('/login', async (req, res) => {
       const result = await bcrypt.compare(req.body.password, user.password);
       if (result) {
         // Successful login
-        req.session.user = { username: user.username, usertype: user.usertype};
+        req.session.user = {userId: user._id, username: user.username, usertype: user.usertype };
+        console.log(user._id);
         res.redirect('/redirect');
         console.log("Successfully logged in");
         return;
@@ -103,9 +105,8 @@ app.get('/shipper', requireLogin, async (req, res) => {
   }
 });
 
-app.post('/completeOrder', async (req, res) => {
+app.post('/shipper', async (req, res) => {
   const orderId = req.body.orderId;
-
   try {
       const updatedOrder = await Order.findByIdAndUpdate(orderId, { status: 'completed' }, { new: true });
 
@@ -121,6 +122,55 @@ app.post('/completeOrder', async (req, res) => {
   }
 });
 
+app.get('/seller', requireLogin, async (req,res) => {
+  try {
+    const userSession = req.session.user;
+    const user = await User.findOne({ username: userSession.username });
+    const products = await Product.findBySellerId(user); 
+    console.log(products);
+    res.render('pages/seller', { pageTitle: 'Seller', user, products});
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Internal server error.' });
+}
+});
+
+app.get('/addproduct',requireLogin, (req,res) => {
+  const user = req.session.user;
+  res.render('pages/addproduct', {user});
+});
+
+app.post('/addproduct', async (req,res) => {
+  try {
+    // Find the seller based on the username in the request body
+    const seller = await User.findOne({ username: req.body.username });
+
+    // Check if the seller is found
+    if (!seller) {
+        return res.status(404).json({ error: 'Seller not found.' });
+    }
+
+    // Create a new product associated with the found seller
+    const newProduct = new Product({
+        seller: seller._id, // Assuming _id is the identifier for the seller in the User model
+        name: req.body.name,
+        image: req.body.image,
+        type: req.body.type,
+        price: req.body.price,
+        quantity: req.body.quantity,
+        rating: req.body.rating,
+        description: req.body.description,
+    });
+
+    // Save the new product to the database
+    const savedProduct = await newProduct.save();
+    
+    res.redirect('/seller');
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Internal server error.' });
+}
+})
 app.get('/logout', (req, res) => {
   req.session.destroy((err) => {
     if (err) {

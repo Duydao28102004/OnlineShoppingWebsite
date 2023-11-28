@@ -1,0 +1,15 @@
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/userdetail.css">  
+</head>
+<body>
+    <div class="usercontainer">
+        <img src="/images/icon.png">
+        <h1><%= user.username %></h1>
+        <p>User role: <%= user.usertype %></p>
+        <form action="/logout" method="GET">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+</body>
+</html>
