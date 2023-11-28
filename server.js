@@ -6,6 +6,7 @@ const app = express();
 const session = require('express-session');
 const path = require('path');
 const { requireLogin } = require('./routes/middleware');
+const Product = require('./models/Product')
 
 // Set up session middleware
 app.use(session({
@@ -62,8 +63,8 @@ app.get('/redirect', requireLogin, (req, res) => {
   const user = req.session.user;
   if (user.usertype === 'shipper') {
     res.redirect('/shipper');
-  } else if (user.usertype === 'custommer') {
-    res.redirect('/custommer');
+  } else if (user.usertype === 'customer') {
+    res.redirect('/customer');
   } else if (user.usertype === 'seller') {
     res.redirect('/seller');
   } else {
@@ -148,6 +149,24 @@ app.post('/testaddorder', async (req, res) => {
       res.status(500).send('Internal Server Error');
   }
 });
+
+
+app.get('/product', async (req, res) => {
+  try {
+      // Fetch all products from the database
+      const products = await Product.find();
+
+      // Render the EJS template with the product data
+      res.render('pages/product', { pageTitle: 'Our Products', products, error: null});
+  } catch (error) {
+      console.error('Error fetching products:', error);
+      res.status(500).send('Internal Server Error');
+  }
+});
+
+app.get('/about', (req, res) => {
+  res.render('pages/about', { pageTitle: 'About us', error: null});
+})
 
 const port = process.env.PORT || 3000; // Use the provided port or default to 3000
 app.listen(port, () => {
