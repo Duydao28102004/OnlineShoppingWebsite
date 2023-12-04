@@ -11,7 +11,7 @@
 <%- include('../components/header') %>
 <h1>Create a New Product</h1>
 
-<form action="/addproduct" method="post">
+<form action="/addproduct" method="post" enctype="multipart/form-data">
     <input type="text" id="username" name="username" value="<%= user.username %>" required hidden>
     <br>
 
@@ -20,8 +20,8 @@
     <input type="text" id="name" name="name" required>
     <br>
 
-    <label for="image">Image URL:</label>
-    <input type="text" id="image" name="image" required>
+    <label for="image">Image:</label>
+    <input type="file" id="image" name="image" accept="image/*" required>
     <br>
 
     <label for="type">Product Type:</label>

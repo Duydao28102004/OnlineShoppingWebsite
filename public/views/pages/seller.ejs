@@ -17,7 +17,7 @@
                 <ul class="product-list">
                     <% products.forEach(product => { %>
                         <li class="product-item">
-                            <img src="<%= product.image %>" alt="<%= product.name %>" class="product-image">
+                            <img src="data:image/png;base64,<%= product.image %>" alt="<%= product.name %>" class="product-image">
                             <h2 class="product-name"><%= product.name %></h2>
                             <p class="product-type"><%= product.type %></p>
                             <p class="product-price">$<%= product.price %></p>

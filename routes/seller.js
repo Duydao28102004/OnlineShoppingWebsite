@@ -4,12 +4,16 @@ const express = require('express');
 const { requireLogin } = require('./middleware');
 const router = express.Router();
 
+const multer = require('multer');
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
 router.get('/seller', requireLogin, async (req,res) => {
     try {
       const userSession = req.session.user;
       const user = await User.findOne({ username: userSession.username });
       const products = await Product.findBySellerId(user); 
-      console.log(products);
       res.render('pages/seller', { pageTitle: 'Seller', user, products});
     } catch (error) {
       console.error('Error:', error);
@@ -22,8 +26,11 @@ router.get('/addproduct',requireLogin, (req,res) => {
     res.render('pages/addproduct', {user});
 });
   
-router.post('/addproduct', async (req,res) => {
+router.post('/addproduct', upload.single('image'), async (req,res) => {
     try {
+
+      const imageData = req.file.buffer;
+      const base64Data = imageData.toString('base64');
       // Find the seller based on the username in the request body
       const seller = await User.findOne({ username: req.body.username });
   
@@ -34,9 +41,9 @@ router.post('/addproduct', async (req,res) => {
   
       // Create a new product associated with the found seller
       const newProduct = new Product({
-          seller: seller._id, // Assuming _id is the identifier for the seller in the User model
+          seller: seller._id,
           name: req.body.name,
-          image: req.body.image,
+          image: base64Data,
           type: req.body.type,
           price: req.body.price,
           quantity: req.body.quantity,
