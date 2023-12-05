@@ -25,9 +25,9 @@ const isSeller = (req, res, next) => {
   }
 }
 
-const isCustommer = (req, res, next) => {
+const isCustomer = (req, res, next) => {
   user = req.session.user;
-  if (user.usertype === "custommer") {
+  if (user.usertype === "customer") {
     return next();
   } else {
     res.redirect('/error');
@@ -37,5 +37,5 @@ const isCustommer = (req, res, next) => {
 
 // export custom middleware
 module.exports = {
-  requireLogin, isSeller, isCustommer, isShipper
+  requireLogin, isSeller, isCustomer, isShipper
 };
