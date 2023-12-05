@@ -3,121 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/product.css">
     <title>Our Products</title>
 </head>
 <body>
-    <header>
-        <h1>Welcome to the Shopme!</h1>
-        <h2>We put customers first.</h2>
-        <div class="topnav">
-            <a href="index.html">Home</a>
-            <a href="product.html">Products</a>
-            <a class="active" href="account.html">My Account</a>
-            <a href="login.html">Log In</a>
-        </div>
-    </header>
-    <main>
+    <%- include('../components/header') %>
+    <main class="container">
         <h1>Our array of products won't make you disappointed.</h1>
         <section>
-            <h1>Best Seller!</h1>
-            <div>
-                <table id="best-seller">
-                    <tr>
-                        <td>
-                            <div class="w3-container">
-                                <img src="/images/....jpg" alt="...">
-                            </div>
-                            <div class="w3-container">
-                                <h3>Your Product Name</h3>
-                                <h4>To be updated</h4>
-                                <p><strong>19.99 USD</strong></p>
-                            </div>
-                            <div class="w3-container w3-blue">
-                                <button>Add To Cart!</button>
-                            </div>
-                        </td>
-                        <br>
-                        <td>
-                            <div class="w3-container">
-                                <img src="/images/....jpg" alt="...">
-                            </div>
-                            <div class="w3-container">
-                                <h3>Your Product Name</h3>
-                                <h4>To be updated</h4>
-                                <p><strong>29.99 USD</strong></p>
-                            </div>
-                            <div class="w3-container w3-blue">
-                                <button>Add To Cart!</button>
-                            </div>
-                        </td>
-                        <br>
-                        <td>
-                            <div class="w3-container">
-                                <img src="/images/....jpg" alt="...">
-                            </div>
-                            <div class="w3-container">
-                                <h3>Your Product Name</h3>
-                                <h4>To be updated</h4>
-                                <p><strong>33.49 USD</strong></p>
-                            </div>
-                            <div class="w3-container w3-blue">
-                                <button>Add To Cart!</button>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+            <h1>All Products</h1>
+            <section class="all-products" id="all-products">
+            <% products.forEach(function(product) { %>
+                <div class="col">
+                    <img src="<%= product.image %>" alt="<%= product.name %>">
+                    <h3><%= product.name %></h3>
+                    <p>Price: $<%= product.price ? product.price.toFixed(2) : 'N/A' %></p>
+                    <p>Rating: <%= product.rating %></p>
+                    <p><strong>Description:</strong> <%= product.description %></p>
+                </div>
+            <% }); %>
         </section>
-        <section>
-            <h1>Rare Products</h1>
-            <div>
-                <table id="rare-products">
-                    <tr>
-                        <td>
-                            <div class="w3-container">
-                                <img src="/images/....jpg" alt="...">
-                            </div>
-                            <div class="w3-container">
-                                <h3>Your Product Name</h3>
-                                <h4>To be updated</h4>
-                                <p><strong>18.99 USD</strong></p>
-                            </div>
-                            <div class="w3-container w3-blue">
-                                <button>Add To Cart!</button>
-                            </div>
-                        </td>
-                        <br>
-                        <td>
-                            <div class="w3-container">
-                                <img src="/images/....jpg" alt="...">
-                            </div>
-                            <div class="w3-container">
-                                <h3>Your Product Name</h3>
-                                <h4>To be updated</h4>
-                                <p><strong>29.49 USD</strong></p>
-                            </div>
-                            <div class="w3-container w3-blue">
-                                <button>Add To Cart!</button>
-                            </div>
-                        </td>
-                        <br>
-                        <td>
-                            <div class="w3-container">
-                                <img src="/images/....jpg" alt="...">
-                            </div>
-                            <div class="w3-container">
-                                <h3>Your Product Name</h3>
-                                <h4>To be updated</h4>
-                                <p><strong>34.49 USD</strong></p>
-                            </div>
-                            <div class="w3-container w3-blue">
-                                <button>Add To Cart!</button>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
         </section>
     </main>
     <footer>
