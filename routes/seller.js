@@ -21,12 +21,12 @@ router.get('/seller', requireLogin, isSeller, async (req,res) => {
   }
   });
   
-router.get('/addproduct',requireLogin, isSeller, (req,res) => {
+router.get('/seller/addproduct',requireLogin, isSeller, (req,res) => {
     const user = req.session.user;
     res.render('pages/addproduct', {user});
 });
   
-router.post('/addproduct', upload.single('image'), async (req,res) => {
+router.post('/seller/addproduct', upload.single('image'), async (req,res) => {
     try {
 
       const imageData = req.file.buffer;
