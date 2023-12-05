@@ -1,7 +1,7 @@
 const Product = require('../models/Product');
 const User = require('../models/User');
 const express = require('express');
-const { requireLogin } = require('./middleware');
+const { requireLogin, isSeller } = require('./middleware');
 const router = express.Router();
 
 const multer = require('multer');
@@ -9,7 +9,7 @@ const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-router.get('/seller', requireLogin, async (req,res) => {
+router.get('/seller', requireLogin, isSeller, async (req,res) => {
     try {
       const userSession = req.session.user;
       const user = await User.findOne({ username: userSession.username });
@@ -21,7 +21,7 @@ router.get('/seller', requireLogin, async (req,res) => {
   }
   });
   
-router.get('/addproduct',requireLogin, (req,res) => {
+router.get('/addproduct',requireLogin, isSeller, (req,res) => {
     const user = req.session.user;
     res.render('pages/addproduct', {user});
 });

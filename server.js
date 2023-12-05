@@ -3,11 +3,14 @@ const express = require('express');
 const app = express();
 const session = require('express-session');
 const path = require('path');
+
+// import routes
 const authentication = require('./routes/authentication');
 const redirect = require('./routes/redirect');
 const home = require('./routes/home');
 const shipper = require('./routes/shipper');
 const seller = require('./routes/seller');
+const error = require('./routes/error')
 
 // Set up session middleware
 app.use(session({
@@ -28,7 +31,8 @@ app.use('/', authentication);
 app.use('/', redirect);
 app.use('/', home);
 app.use('/', shipper);
-app.use('/', seller);
+app.use('/', seller)
+app.use('/', error);
 
 app.get('/testaddorder', (req, res) => {
   res.render('pages/testaddorder', { pageTitle: 'Add New Order'});

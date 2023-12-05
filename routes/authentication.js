@@ -1,7 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const express = require('express');
-const { requireLogin } = require('./middleware');
 const router = express.Router();
 
 router.get('/login', (req,res) => {

@@ -1,9 +1,9 @@
 const Order = require('../models/Order');
 const express = require('express');
-const { requireLogin } = require('./middleware');
+const { requireLogin, isShipper } = require('./middleware');
 const router = express.Router();
 
-router.get('/shipper', requireLogin, async (req, res) => {
+router.get('/shipper', requireLogin, isShipper, async (req, res) => {
     const user = req.session.user;
     if (user) {
       try {
