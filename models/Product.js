@@ -7,3 +7,7 @@ const ProductSchema = new Schema ({
     productprice: {type: integer, unique: true, required: true},
     city: {type: String, required: true},
 })
+
+const ProductData = model("ProductData", ProductSchema)
+
+module.exports = ProductData
