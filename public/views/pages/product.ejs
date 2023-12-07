@@ -15,11 +15,11 @@
             <section class="all-products" id="all-products">
             <% products.forEach(function(product) { %>
                 <div class="col">
-                    <img src="<%= product.image %>" alt="<%= product.name %>">
+                    <img src="data:image/png;base64,<%= product.image %>" alt="<%= product.name %>" class="product-image">
                     <h3><%= product.name %></h3>
                     <p>Price: $<%= product.price ? product.price.toFixed(2) : 'N/A' %></p>
                     <p>Rating: <%= product.rating %></p>
-                    <p><strong>Description:</strong> <%= product.description %></p>
+                    <!-- <p><strong>Description:</strong> <%= product.description %></p> -->
                 </div>
             <% }); %>
         </section>
