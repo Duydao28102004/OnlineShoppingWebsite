@@ -22,7 +22,9 @@
                             <p class="product-type"><%= product.type %></p>
                             <p class="product-price">$<%= product.price %></p>
                             <p class="product-quantity">Quantity: <%= product.quantity %></p>
-                            <!-- Add more product details as needed -->
+                            <form action="/seller/updateproduct/<%= product._id %>" method="get">
+                                <button type="submit">Update this product</button>
+                            </form>
                         </li>
                     <% }) %>
                 </ul>
