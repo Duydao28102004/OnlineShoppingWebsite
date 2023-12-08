@@ -1,20 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
+const DATABASE_URL= "mongodb+srv://TungTT:ySAn8E1flmR7oOzY@cluster0.rtiqjut.mongodb.net/CommercialWebsite";
 
 // connect to MongoDB
-mongoose.connect('mongodb+srv://TungTT:ySAn8E1flmR7oOzY@cluster0.rtiqjut.mongodb.net/CommercialWebsite', {useNewUrlParser: true, useUnifiedTopology: true})
-.then(() => console.log('MongoDB connected'))
-.catch(err => console.log(err));
+mongoose.connect(DATABASE_URL);
 
+// fetch data into the product.ejs page
 router.get('/', async (req, res) => {
-    try {
-        const products = await Product.find();
-        res.render('/public/views/pages/product.ejs', {products: products});
-    } catch (err) {
-        console.log(err);
-        res.status(500).send('500 Server Error!');
-    }
+    const products = await Product.find({}).sort('name');
+    res.render('product', { products: products });
 });
 
 // exports of router...
