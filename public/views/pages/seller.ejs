@@ -23,7 +23,10 @@
                             <p class="product-price">$<%= product.price %></p>
                             <p class="product-quantity">Quantity: <%= product.quantity %></p>
                             <form action="/seller/updateproduct/<%= product._id %>" method="get">
-                                <button type="submit">Update this product</button>
+                                <button type="submit"  class="update-button">Update this product</button>
+                            </form>
+                            <form action="/seller/deleteproduct/<%= product._id %>" method="post">
+                                <button type="submit" class="delete-button">Delete this product</button>
                             </form>
                         </li>
                     <% }) %>
@@ -32,7 +35,7 @@
                 <p>No products available.</p>
             <% } %>
             <form action="/seller/addproduct" method="get">
-                <button type="submit">Create your new product here!</button>
+                <button type="submit" class="create-button">Create your new product here!</button>
             </form>
         </div>
     </div>

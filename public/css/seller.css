@@ -18,9 +18,10 @@ body {
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-left: 10px;
     justify-content: space-between; /* Space between children */
     align-items: center; /* Center vertically */
+    margin: 0px auto;
+    margin-left: 10px;
 }
 
 .productcontainer h1 {
@@ -32,17 +33,29 @@ body {
 .product-list {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 20px;
 }
 
 .product-item {
-    width: 25%; /* Display 4 items in a row */
+    width: 23%;
     box-sizing: border-box;
     padding: 10px;
     margin: 5px;
-    background-color: #333;
+    background-color: #e2e2e2;
+}
+
+.product-item:hover {
+    transform: scale(1.05);
+    transition: 0.5s;
+}
+
+.product-item:not(:hover) {
+    transform: scale(1);
+    transition: 0.5s;
 }
 
 .product-image {
@@ -50,7 +63,6 @@ body {
     height: 100px;
 }
 
-/* Add more styles as needed for product details */
 .product-name {
     font-size: 16px;
     font-weight: bold;
@@ -63,7 +75,7 @@ body {
     margin-top: 5px;
 }
 
-.productcontainer form button {
+.create-button, .update-button {
     background-color: #4CAF50;
     color: white;
     padding: 10px;
@@ -71,9 +83,32 @@ body {
     border-radius: 5px;
     cursor: pointer;
     height: 100%;
+    width: 100%;
     margin-bottom: 20px;
 }
-.productcontainer form button:hover {
+
+.create-button {
+    width: auto;
+}
+
+.create-button:hover, .update-button:hover {
     background-color: #45a049;
+    transition: 1s;
+}
+
+.delete-button {
+    background-color: #ff0000;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.delete-button:hover {
+    background-color: #cc0000;
     transition: 1s;
 }

@@ -102,4 +102,16 @@ router.post('/seller/updateproduct/:productId', requireLogin, isSeller, async (r
   }
 });
 
+router.post('/seller/deleteproduct/:id', async (req, res) => {
+  const productId = req.params.id;
+  try {
+      await Product.findByIdAndDelete(productId);
+      res.redirect('/seller');
+  } catch (error) {
+      console.error('Error deleting product:', error);
+      res.status(500).send('Internal Server Error');
+  }
+});
+
+
 module.exports = router;
