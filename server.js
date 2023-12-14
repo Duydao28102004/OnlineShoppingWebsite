@@ -10,6 +10,7 @@ const redirect = require('./routes/redirect');
 const home = require('./routes/home');
 const shipper = require('./routes/shipper');
 const seller = require('./routes/seller');
+const customer = require('./routes/product')
 const error = require('./routes/error')
 
 // Set up session middleware
@@ -31,7 +32,8 @@ app.use('/', authentication);
 app.use('/', redirect);
 app.use('/', home);
 app.use('/', shipper);
-app.use('/', seller)
+app.use('/', seller);
+app.use('/', customer);
 app.use('/', error);
 
 app.get('/testaddorder', (req, res) => {

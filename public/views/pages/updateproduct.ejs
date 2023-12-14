@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/addproduct.css">
+    <title>Update Product</title>
+</head>
+<body>
+<%- include('../components/header') %>
+<h1>Update a Product</h1>
+
+<form action="/seller/updateproduct/<%= product._id %>" method="post">
+    <input type="text" id="username" name="username" value="<%= user.username %>" required hidden>
+    <br>
+
+    <!-- Other Product Details -->
+    <label for="name">Product Name:</label>
+    <input type="text" id="name" name="name" placeholder="<%= product.name %>"  >
+    <br>
+
+    <label for="image">Image:</label>
+    <img src="data:image/png;base64,<%= product.image %>" alt="<%= product.name %>" class="product-image">
+    <br>
+
+    <label for="type">Product Type:</label>
+    <input type="text" id="type" name="type" placeholder="<%= product.type %>" value="<%= product.type %>">
+    <br>
+
+    <label for="price">Price:</label>
+    <input type="number" id="price" name="price" placeholder="<%= product.price %>" value="<%= product.price %>">
+    <br>
+
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" name="quantity" placeholder="<%= product.quantity %>" value="<%= product.quantity %>">
+    <br>
+
+    <label for="rating">Rating:</label>
+    <input type="number" id="rating" name="rating" placeholder="<%= product.rating %>" value="<%= product.rating %>">
+    <br>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" placeholder="<%= product.description %>" value="<%= product.description %>"></textarea>
+    <br>
+
+    <!-- Submit Button -->
+    <button type="submit">Update Product</button>
+</form>
+
+</body>
+</html>
