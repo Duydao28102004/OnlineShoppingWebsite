@@ -3,23 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/productdetail.css">
     <title>Document</title>
 </head>
 <body>
     <%- include('../components/header') %>
-    <main>
+    <main class="container">
         <!--% products.forEach(function(product) { %-->
+        <div class="product-description">
             <% if (product && product.id) { %>
-                <p><%= product.name %></p>
+                <h1><%= product.name %></h1>
                 <img src="data:image/png;base64,<%= product.image %>" alt="<%= product.name %>" class="product-image">
-                <p><%= product.type %></p>
+                <span><%= product.type %></span>
+                <p><%= product.description %></p>
                 <p><%= product.price %></p>
                 <p><%= product.quantity %></p>
                 <p><%= product.rating %></p>
-                <p><%= product.description %></p>
             <% } else { %>
                 <p>Product not found</p>
             <% } %>
+        </div>
         <!--% }); %-->
     </main>
     <footer>
