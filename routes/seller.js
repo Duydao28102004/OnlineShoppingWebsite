@@ -113,5 +113,4 @@ router.post('/seller/deleteproduct/:id', async (req, res) => {
   }
 });
 
-
 module.exports = router;
