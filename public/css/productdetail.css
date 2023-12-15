@@ -29,6 +29,12 @@ html, body {
     color: #43484D;
     letter-spacing: -2px;
   }
+
+  .product-price {
+    display: flex;
+    align-items: center;
+  }
+  
   .product-description p {
     font-size: 16px;
     font-weight: 300;
@@ -43,6 +49,7 @@ html, body {
     margin-right: 20px;
   }
 
+  
 
 
   /* Add to cart button */

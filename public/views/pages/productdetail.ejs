@@ -9,20 +9,25 @@
 <body>
     <%- include('../components/header') %>
     <main class="container">
+        <% if (product && product.id) { %>
         <!--% products.forEach(function(product) { %-->
-        <div class="product-description">
-            <% if (product && product.id) { %>
-                <h1><%= product.name %></h1>
-                <img src="data:image/png;base64,<%= product.image %>" alt="<%= product.name %>" class="product-image">
-                <span><%= product.type %></span>
-                <p><%= product.description %></p>
-                <p><%= product.price %></p>
-                <p><%= product.quantity %></p>
-                <p><%= product.rating %></p>
-            <% } else { %>
-                <p>Product not found</p>
-            <% } %>
-        </div>
+            <div class="product-description">
+                
+                    <h1><%= product.name %></h1>
+                    <img src="data:image/png;base64,<%= product.image %>" alt="<%= product.name %>" class="product-image">
+                    <span><%= product.type %></span>
+                    <p><%= product.description %></p>
+                    <p><%= product.quantity %></p>
+                    <p><%= product.rating %></p>
+                
+            </div>
+            <div class="product-price">
+                    <span><%= product.price %></span>
+                    <a href="#" class="cart-btn">Add to cart</a>
+            </div>
+        <% } else { %>
+            <p>Product not found</p>
+        <% } %>
         <!--% }); %-->
     </main>
     <footer>
