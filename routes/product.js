@@ -21,4 +21,15 @@ router.get('/product', async (req, res) => {
     }
 });
 
+
+router.get('/product/productdetail', requireLogin, isCustomer, async (req, res) => {
+    try {
+      const products = await Product.find({});
+      res.render('pages/product/productdetail', { productsList: products });
+    } catch (err) {
+      // Handle error
+    }
+  });
+  
+
 module.exports = router;
