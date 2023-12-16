@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/basket.css">
+    <title>Basket</title>
+</head>
+<body>
+    <%- include('../components/header') %>
+    <div class="components">
+        <div class="product-section">
+            <h1>Selected product</h1>
+            <div id="basket-container" class="basket-container"></div>
+        </div>
+        <div class="checkout-section">
+            <div class="checkout-container">
+                <h1>Checkout</h1>
+                <div class="checkout-details">
+                    <p>Total Product Price: $<span id="total-price">0.00</span></p>
+                    <p>Shipping Fee: $<span id="shipping-fee">0.00</span></p>
+                    <p>Tax: $<span id="tax">0.00</span></p>
+                    <hr>
+                    <p>Total Cost: $<span id="total-cost">0.00</span></p>
+                </div>
+                <button id="checkout-button" onclick="checkout()">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+    <script src="/js/basket.js"></script>
+</body>
+</html>

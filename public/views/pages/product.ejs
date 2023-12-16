@@ -20,19 +20,13 @@
                     <p>Price: $<%= product.price ? product.price.toFixed(2) : 'N/A' %></p>
                     <p>Rating: <%= product.rating %></p>
                     <!-- <p><strong>Description:</strong> <%= product.description %></p> -->
+                    <button onclick="addToBasket('<%= product._id %>', '<%= product.name %>', '<%= product.price %>','data:image/png;base64,<%= product.image %>', 1)">Add this product</button>
                 </div>
             <% }); %>
         </section>
-        </section>
+        <button onclick="resetBasket()">Clear product</button>
     </main>
-    <footer>
-        <div class="topnav">
-            <a href="">About our Company</a>
-            <a>Copyright Information</a>
-            <a>Privacy Policy</a>
-        </div>
-    </footer>
 
-    <script src="/js/script.js"></script>
+    <script src="/js/product.js"></script>
 </body>
 </html>

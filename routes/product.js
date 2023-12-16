@@ -1,5 +1,7 @@
 const Product = require('../models/Product');
 const express = require('express');
+const User = require('../models/User');
+const Basket = require('../models/Basket');
 // const { requireLogin, isCustomer } = require('./middleware');
 const router = express.Router();
 
@@ -20,5 +22,10 @@ router.get('/product', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
+router.get('/basket', (req, res) => {
+    res.render('pages/basket');
+});
+
 
 module.exports = router;
