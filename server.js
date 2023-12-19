@@ -51,6 +51,12 @@ app.post('/order', async (req, res) => {
   }
 });
 
+// the FAQ page
+
+app.get('/faq', (req, res) => {
+  res.render('pages/faq', { pageTitle: 'FAQ Corner'});
+});
+
 const port = process.env.PORT || 3000; // Use the provided port or default to 3000
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:3000`);
