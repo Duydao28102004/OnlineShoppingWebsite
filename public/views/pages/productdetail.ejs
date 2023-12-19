@@ -10,29 +10,32 @@
     <%- include('../components/header') %>
     <main class="container">
         <% if (product && product.id) { %>
-            <div class="product-img">
-                    
+            <div class="detail-container">
+                <div class="product-img">
                     <img src="data:image/png;base64,<%= product.image %>" alt="<%= product.name %>">
-                
-            </div>
-            <div class="product-detail">
-                    <div class="product-type"><%= product.type %></div>
-                    <div class="product_name"><%= product.name %></div>
-                    <div class="product-description"><%= product.description %></div>
-                    <div class="product-rating">Rating:<%= product.rating %></div>
-                    <div>
-                    <div>a</div>
-                    <div>a</div>
-                    <div class="product-price">$<%= product.price %></div>
-                    <button class="cart-btn">Add to cart</button>
+                </div>
+                <div class="product-detail">
+                    <div class="product-title">
+                        <div class="product-type"><%= product.type %></div>
+                        <div class="product-name"><%= product.name %></div>
                     </div>
-            </div>
+                    
+                    <hr>
+                    
+                    <div class="product-description"><%= product.description %></div>
+                    <div class="product-rating">Rating: <%= product.rating %></div>
+                    
+                    <div class="product-price">Price: $<%= product.price %></div>
+                    <button class="cart-btn">Add to cart</button>
+                    
+                </div>
+        </div>
         <% } else { %>
             <p>Product not found</p>
         <% } %>
     </main>
     <footer>
-        <div class="topnav">
+        <div class="footer">
             <a href="">About our Company</a>
             <a>Copyright Information</a>
             <a>Privacy Policy</a>
