@@ -60,7 +60,9 @@ app.get('/faqnew', (req, res) => {
   res.render('pages/faqnew', { pageTitle: 'FAQ (NEW)'});
 });
 
-const port = process.env.PORT || 3000; // Use the provided port or default to 3000
+const port = process.env.PORT || 5500; // Use the provided port or default to 3000
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:3000`);
+  console.log(`Server is running on http://localhost:5500`);
 });
+
+app.listen(5500);
