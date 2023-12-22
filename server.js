@@ -51,10 +51,13 @@ app.post('/order', async (req, res) => {
   }
 });
 
-// the FAQ page
-
+// Access the FAQ Page
 app.get('/faq', (req, res) => {
-  res.render('pages/faq', { pageTitle: 'FAQ Corner'});
+  res.render('pages/faq', { pageTitle: 'FAQ'});
+});
+
+app.get('/faqnew', (req, res) => {
+  res.render('pages/faqnew', { pageTitle: 'FAQ (NEW)'});
 });
 
 const port = process.env.PORT || 3000; // Use the provided port or default to 3000
