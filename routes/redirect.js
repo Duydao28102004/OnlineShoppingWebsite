@@ -1,7 +1,6 @@
 const express = require('express');
 const { requireLogin } = require('./middleware');
 const router = express.Router();
-
 router.get('/redirect', requireLogin, (req, res) => {
     const user = req.session.user;
     if (user.usertype === 'shipper') {

@@ -1,0 +1,93 @@
+.components {
+    display: flex; /* Use flexbox to place children in a row */
+    justify-content: space-between; /* Add space between the children */
+    max-width: 70%;
+    margin: 20px auto;
+}
+.product-section {
+    width: 75%;
+    text-align: center;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0px auto;
+    margin-right: 10px;
+}
+
+.product-section h1 {
+    margin-top: 20px;
+}
+.basket-item {
+    background-color:  #cac8c8;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    margin: 10px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-info {
+    display: flex;
+    align-items: center;
+}
+
+.product-image {
+    max-width: 150px;
+    max-height: 150px;
+    margin-right: 10px;
+}
+
+.product-details {
+    flex: 1;
+}
+
+.buttons-container button {
+    margin-right: 5px;
+}
+
+.checkout-section {
+    text-align: center;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px auto;
+}
+.checkout-container {
+    width: fit-content;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.checkout-details {
+    margin-top: 20px;
+}
+
+.checkout-details p {
+    margin: 10px 0;
+}
+
+hr {
+    border: 1px solid #ddd;
+}
+
+#checkout-button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#checkout-button:hover {
+    background-color: #45a049;
+}

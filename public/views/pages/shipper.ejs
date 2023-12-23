@@ -2,70 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/public/css/shipper.css">
-    <title>Shipper's Area</title>
+    <link rel="stylesheet" type="text/css" href="/css/shipper.css">
+    <title><%= pageTitle %></title>
 </head>
 <body>
     <%- include('../components/header') %>
-    <div class="usercontainer">
-        <h1>Welcome back, <%= user.username %></h1>
-        <img src="/images/icon.png">
-    </div>
-    <h1><strong>Shopme Shipping Center</strong></h1>
-    <h2>Shipper Workstation</h2>
-    <label for="location">Location:</label>
-    <select name="location" id="location" required>
-        <option value="hanoi">Hanoi</option>
-        <option value="hochiminh">Ho Chi Minh City</option>
-        <option value="danang">Danang</option>
-    </select>
-    <br><br>
-    <button type="submit">Display My Shifts</button>
-    <!-- Display Order from the Database -->
-    <table id="order-table">
-        <tr>
-            <th>Order ID</th>
-            <th>Customer Name</th>
-            <th>Customer Address</th>
-            <th>Customer Phone</th>
-            <th>Order Date</th>
-            <th>Order Status</th>
-            <th>Order Total</th>
-            <th>Order Details</th>
-        </tr>
-        <% for (let i = 0; i < orders.length; i++) { %>
-            <tr>
-                <td><%= orders[i].order_id %></td>
-                <td><%= orders[i].customer_name %></td>
-                <td><%= orders[i].customer_address %></td>
-                <td><%= orders[i].customer_phone %></td>
-                <td><%= orders[i].order_date %></td>
-                <td><%= orders[i].order_status %></td>
-                <td><%= orders[i].order_total %></td>
-                <td><a href="models/Shipper">View Order Details</a></td>
-            </tr>
-        <% } %>
-    </table>
-    <br><br>
-    <h2>Update Orders</h2>
-    <!-- Shipper update order -->
     <div class="components">
+        <%- include('../components/userdetail') %>
         <div class="ordercontainer">
             <h1>Orders</h1>
-            <% orders.forEach(order => { %>
-            <div class="orderdetail">
-                <div class="orderinfo">
-                    <p>Custommer name: <%= order.customername %></p>
-                    <p>Product: <%= order.products %></p>
-                    <p>Address: <%= order.address %></p>
-                    <p>Order status: <%= order.status %></p>
-                </div>
-                <button>Completed</button>
-            </div>
-            <% }) %>
+            <% if (orders.length > 0) { %>
+                <% orders.forEach(order => { %>
+                    <div class="orderdetail">
+                        <div class="orderinfo">
+                            <p>Customer name: <%= order.customername %></p>
+                            <p>Product: <%= order.products %></p>
+                            <p>Address: <%= order.address %></p>
+                            <p>Order status: <%= order.status %></p>
+                        </div>
+                        <form action="/shipper" method="POST">
+                            <!-- Add a hidden input field to store the orderId -->
+                            <input type="hidden" name="orderId" value="<%= order._id %>">
+                            <button type="submit">Mark as Completed</button>
+                        </form>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>No orders available.</p>
+            <% } %>
         </div>
     </div>
-    <%- include('../components/footer') %>
 </body>
 </html>

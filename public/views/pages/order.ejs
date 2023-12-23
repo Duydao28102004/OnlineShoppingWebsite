@@ -7,22 +7,28 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <%- include('../components/header') %>
+    <header>
+        <h1>Welcome to the Shopme!</h1>
+        <h2>We put customers first.</h2>
+        <div class="topnav">
+            <a href="index.html">Home</a>
+            <a href="product.html">Products</a>
+            <a class="active" href="account.html">My Account</a>
+            <a href="login.html">Log In</a>
+        </div>
+    </header>
     <center>
         <main>
             <section>
-                <div class="progress">
-                    <div class="progress-bar" style="width: 25%;"></div>
-                
                 <h1>Shopme Order System!</h1>
-                <h2>Registration Form</h2>
+                <h2>Registration form</h2>
 
                 <form action="form-processing" method="post" id="product-list">
                     <label for="account">Account Name:</label>
                     <input type="text" name="account" id="account" required><br><br>
                     <label for="name">Customer Name:</label>
                     <input type="text" name="name" id="name" required><br><br>
-                    <label for="email">Customer Email:</label>
+                    <label for="email">Email:</label>
                     <input type="email" name="email" id="email" required><br><br>
                     <label for="address">Address:</label>
                     <input type="text" name="address" id="address" required><br><br>
@@ -30,7 +36,7 @@
                     <input type="tel" name="phone" id="phone" required><br><br>
                     <label for="payment">Payment Method:</label>
                     <select name="payment" id="payment" required>
-                        <option value="cash">Simply Cash</option>
+                        <option value="cash">Cash</option>
                         <option value="credit">Credit Card</option>
                         <option value="debit">Debit Card</option>
                     </select><br><br>
@@ -39,8 +45,12 @@
             </section>
         </main>
     </center>
-    <%- include('../components/footer') %>
-
-    <script src="/js/script.js"></script>
+    <footer>
+        <div class="topnav">
+            <a href="">About our Company</a>
+            <a>Copyright Information</a>
+            <a>Privacy Policy</a>
+        </div>
+    </footer>
 </body>
 </html>

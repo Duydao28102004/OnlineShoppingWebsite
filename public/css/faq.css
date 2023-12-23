@@ -1,96 +1,80 @@
-
-::before,
-::after{
+*{
     margin: 0;
     padding: 0;
-    box-sizing: inherit;
+    box-sizing: border-box;
 }
 
-html{
-    font-family: 'Time News Roman', sans-serif;
-    font-size: 10px;
-    box-sizing: border-box;
-
+body{
+    font-family: 'Times New Roman', Times, serif;
+    background: #ffd4dc;
+    color:red;
 }
 
 section{
+    min-height: 100vh;
     width: 100%;
-    height: 100vh;
-    background-color:rgb(124, 113, 113);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-} 
-
-.container{
-    width: 100%;
-    max-width: 80rem;
     margin: 0 auto;
-    padding: 0 1.5rem;
-}
-
-.accordion-item{
-    background-color: azure;
-    border-radius: .4rem;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    box-shadow: .5rem 2px .5rem rgba(0,0,0,.1);
-}
-
-.accordion-link{
-    font-size: 1.6rem;
-    color: rgba(255,255,255,.8);
-    text-decoration: none;
-    background-color:darkorange;
-    width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    padding: 1rem 0;
-}   
-
-.accordion-link i{
-    color:beige;
-    padding: .5rem;
 }
 
-.accordion-link .ion-md-remove{
-    display: none;
+.title {
+    font-size: 3rem;
+    margin: 2rem 0rem;
+}
+
+.faq{
+    max-width: 700px;
+    margin-top: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #fff;
+    cursor: pointer;
+}
+
+.question{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.question h3{
+    font-size: 1.8rem;
 }
 
 .answer{
     max-height: 0;
     overflow: hidden;
-    position: relative;
-    background-color:lightsalmon;
-    transition: max-height 650ms;
-}
-
-.answer::before{
-    content: "";
-    position: absolute;
-    width: .6rem;
-    height: 90%;
-    background-color: rgb(204, 243, 9);
-    top: 50%;
-    left: 0%;
-    transform: translateY(-50%);
+    transition: max-height 1.4s ease;
 }
 
 .answer p{
-    color: rgba(255,255,255,.6);
-    font-size: 1.4rem;
-    padding: 2rem;
+    padding-top: 1rem;
+    line-height: 1.6;
+    font-size: 1.4rem;   
 }
 
-.accordion-item:target .answer{
-    max-height: 20rem;
+.faq.active .answer{
+    max-height: 300px;
+    animation: fade 1s ease-in-out;
 }
 
-.accordion-item:target .accordion-link .add-outline{
-    display: none;
+.faq.active svg {
+    transform: rotate(180deg);
 }
 
-.accordion-item:target .accordion-link .remove-outline{
-    display: block;
+svg {
+    transition: transform 0.5s ease-in;
+}
+
+
+
+@keyframes fade{
+    from{
+        opacity: 0;
+        transform: translateY(-10px);
+    } 
+    to{
+        opacity: 1;
+        transform: translateY(0px);
+    }
 }

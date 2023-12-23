@@ -1,13 +1,29 @@
 const {Schema, model} = require("../db/connection") // import Schema & model
 
-// ShipperData Schema
-
-const ProductSchema = new Schema ({
-    productname: {type: String, unique: true, required: true},
-    productprice: {type: integer, unique: true, required: true},
-    city: {type: String, required: true},
+// User Schema
+const ProductSchema = new Schema({
+    seller: { type: Schema.Types.ObjectId, ref: 'User', required: false},
+    name: {type: String, require: true, unique: false},
+    image: {type: String, require: false},
+    type: {type: String, require: false},
+    price: {type: Number, require: false},
+    quantity: {type: Number, require: false},
+    rating: {type: Number, require: false},
+    description: {type: String},
 })
 
-const ProductData = model("ProductData", ProductSchema)
+ProductSchema.statics.findBySellerId = async function (user) {
+    try {
+        // Use the find method to search for products with the specified seller ID
+        const products = await this.find({ seller:  user});
+        return products;
+    } catch (error) {
+        console.error('Error:', error);
+        throw new Error('Error getting products by seller ID');
+    }
+};
 
-module.exports = ProductData
+// User model
+const Product = model("Product", ProductSchema)
+
+module.exports = Product

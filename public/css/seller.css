@@ -1,0 +1,114 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.components {
+    display: flex; /* Use flexbox to place children in a row */
+    justify-content: space-between; /* Add space between the children */
+    max-width: 60%;
+    margin: 20px auto;
+}
+
+.productcontainer {
+    width: 70%;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    justify-content: space-between; /* Space between children */
+    align-items: center; /* Center vertically */
+    margin: 0px auto;
+    margin-left: 10px;
+}
+
+.productcontainer h1 {
+    font-size: 30px;
+    color: #333;
+}
+
+
+.product-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.product-item {
+    width: 23%;
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 5px;
+    background-color: #e2e2e2;
+}
+
+.product-item:hover {
+    transform: scale(1.05);
+    transition: 0.5s;
+}
+
+.product-item:not(:hover) {
+    transform: scale(1);
+    transition: 0.5s;
+}
+
+.product-image {
+    max-width: 100%;
+    height: 100px;
+}
+
+.product-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.product-type,
+.product-price,
+.product-quantity {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.create-button, .update-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.create-button {
+    width: auto;
+}
+
+.create-button:hover, .update-button:hover {
+    background-color: #45a049;
+    transition: 1s;
+}
+
+.delete-button {
+    background-color: #ff0000;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.delete-button:hover {
+    background-color: #cc0000;
+    transition: 1s;
+}

@@ -61,4 +61,56 @@ router.post('/seller/addproduct', upload.single('image'), async (req,res) => {
   }
 })
 
+router.get('/seller/updateproduct/:id', requireLogin, isSeller, async (req, res) => {
+  try {
+    const productId = req.params.id;
+    const product = await Product.findById(productId);
+    res.render('pages/updateproduct', {product});
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Internal server error.' });
+  }
+})
+
+router.post('/seller/updateproduct/:productId', requireLogin, isSeller, async (req, res) => {
+  try {
+      const productId = req.params.productId;
+
+      // Find the product to update
+      const productToUpdate = await Product.findById(productId);
+
+      // Check if the product is found
+      if (!productToUpdate) {
+          return res.status(404).json({ error: 'Product not found.' });
+      }
+      console.log(req.body.name, req.body.type, req.body.price, req.body.quantity, req.body.rating, req.body.description)
+      // Update other fields based on the request body
+      productToUpdate.name = req.body.name || productToUpdate.name;
+      productToUpdate.type = req.body.type || productToUpdate.type;
+      productToUpdate.price = req.body.price || productToUpdate.price;
+      productToUpdate.quantity = req.body.quantity || productToUpdate.quantity;
+      productToUpdate.rating = req.body.rating || productToUpdate.rating;
+      productToUpdate.description = req.body.description || productToUpdate.description;
+      console.log(productToUpdate);
+      // Save the updated product to the database
+      const updatedProduct = await productToUpdate.save();
+
+      res.redirect('/seller');
+  } catch (error) {
+      console.error('Error:', error);
+      res.status(500).json({ error: 'Internal server error.' });
+  }
+});
+
+router.post('/seller/deleteproduct/:id', async (req, res) => {
+  const productId = req.params.id;
+  try {
+      await Product.findByIdAndDelete(productId);
+      res.redirect('/seller');
+  } catch (error) {
+      console.error('Error deleting product:', error);
+      res.status(500).send('Internal Server Error');
+  }
+});
+
 module.exports = router;

@@ -1,261 +1,32 @@
-<!-- Source for hover: https://codepen.io/philcheng/pen/YWyYwG -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/public/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/product.css">
+    <title>Our Products</title>
 </head>
 <body>
-    <div class="main">
-        <div class="header"></div>
-        <div class="body">
-            <div class="searching">
-                <div class="style-sheet">
-                    <div class="text">
-                        Thể loại
-                    </div>
-                    <div class="custom-select">
-                        <select>
-                            <option value="">Chọn thể loại</option>
-                            <option value="">Áo</option>
-                            <option value="">Quần</option>
-                            <option value="">Giày</option>
-                            <option value="">Đồng hồ</option>
-                            <option value="">Dép</option>
-                            <option value="">Quần đùi</option>
-                            <option value="">Quần xì</option>
-                        </select>
-                    </div>
+    <%- include('../components/header') %>
+    <main class="container">
+        <h1>Our array of products won't make you disappointed.</h1>
+        <section>
+            <h1>All Products</h1>
+            <section class="all-products" id="all-products">
+            <% products.forEach(function(product) { %>
+                <div class="col">
+                    <img src="data:image/png;base64,<%= product.image %>" alt="<%= product.name %>" class="product-image">
+                    <h3><%= product.name %></h3>
+                    <p>Price: $<%= product.price ? product.price.toFixed(2) : 'N/A' %></p>
+                    <p>Rating: <%= product.rating %></p>
+                    <!-- <p><strong>Description:</strong> <%= product.description %></p> -->
+                    <button onclick="addToBasket('<%= product._id %>', '<%= product.name %>', '<%= product.price %>','data:image/png;base64,<%= product.image %>', 1)">Add this product</button>
                 </div>
-                <div class="price-range">
-                    <div class="text">Price range</div>
-                    <div class="custom-select">
-                        <select>
-                            <option value="">Tất cả</option>
-                            <option value="">Dưới 3 triệu</option>
-                            <option value="">Trên 3 triệu</option>
-                            <option value="">Trên 5 triệu</option>
-                            <option value="">Trên 10 triệu</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="sort">
-                    <div class="text">Sắp xếp theo</div>
-                    <div class="custom-select">
-                        <select>
-                            <option value="">Giá thấp đến cao</option>
-                            <option value="">Giá Cao đến thấp</option>
-                            <option value="">Tên từ A-Z</option>
-                            <option value="">Tên từ Z-A</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="search-button">
-                    <button type="button" class="">
-                        <p>Search&emsp;</p>
-                        <span class="fa fa-search"></span>
-                    </button>
-                </div>
-            </div>
-            <ul class="products">
-                <li>
-                    <div class="product-item">
-                        <div class="image-top">
-                            <a href="#" class="thumbs-up">
-                                <img src="https://kingshoes.vn/data/upload/media/sneaker-c77124-super-star-adidas-kingshoes.vn-tphcm-tanbinh-27-1628053703.jpeg" alt="">
-                                <div class="overlay"></div>
-                                <div class="button"><a href="info.ejs">Mua Ngay</a></div>
-                            </a>
+            <% }); %>
+        </section>
+        <button onclick="resetBasket()">Clear product</button>
+    </main>
 
-                        </div>
-                        <div class="information">
-                            <a href="#"class="product-sub-title">Sneaker</a>
-                            <a href="#"class="product-name">Sneaker</a>
-                            <a href="">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                            </a>
-                            <a href="#"class="product-price">Sneaker</a>
-                        </div>
-                    </div>
-                </li>
-                
-                <li>
-                    <div class="product-item">
-                        <div class="image-top">
-                            <a href="#" class="thumbs-up">
-                                <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/7a50b80d628641d18acba8860134b23b_9366/TUBULAR_SHADOW_PK_trang_AQ1181_01_standard.jpg" alt="">
-                                <div class="overlay"></div>
-                                <div class="button"><a href="info.ejs">Mua Ngay</a></div>
-                            </a>
-
-                        </div>
-                        <div class="information">
-                            <a href="#"class="product-sub-title">Sneaker</a>
-                            <a href="#"class="product-name">Sneaker</a>
-                            <a href="">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                            </a>
-                            <a href="#"class="product-price">Sneaker</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="product-item">
-                        <div class="image-top">
-                            <a href="#" class="thumbs-up">
-                                <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/4dd44b9256254b4383d6acc20155a7d9_9366/FORUM_84_LOW_trang_GW0299_01_standard.jpg" alt="">
-                                <div class="overlay"></div>
-                                <div class="button"><a href="info.ejs">Mua Ngay</a></div>
-                            </a>
-
-                        </div>
-                        <div class="information">
-                            <a href="#"class="product-sub-title">Sneaker</a>
-                            <a href="#"class="product-name">Sneaker</a>
-                            <a href="">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                            </a>
-                            <a href="#"class="product-price">$6250</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="product-item">
-                        <div class="image-top">
-                            <a href="#" class="thumbs-up">
-                                <img src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/470ab209-df88-4686-b67a-9f729c0b3fe2/air-force-1-shadow-shoes-mN8Glx.png" alt="">
-                                <div class="overlay"></div>
-                                <div class="button"><a href="info.ejs">Mua Ngay</a></div>
-                            </a>
-
-                        </div>
-                        <div class="information">
-                            <a href="#"class="product-sub-title">Sneaker</a>
-                            <a href="#"class="product-name">Sneaker</a>
-                            <a href="">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                            </a>
-                            <a href="#"class="product-price">Sneaker</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="product-item">
-                        <div class="image-top">
-                            <a href="#" class="thumbs-up">
-                                <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/df0e7b1b93fd436bac76af45012723bb_9366/Giay_Harden_Volume_7_DJen_HP3021_01_standard.jpg" alt="">
-                                <div class="overlay"></div>
-                                <div class="button"><a href="info.ejs">Mua Ngay</a></div>
-                            </a>
-
-                        </div>
-                        <div class="information">
-                            <a href="#"class="product-sub-title">Sneaker</a>
-                            <a href="#"class="product-name">Sneaker</a>
-                            <a href="">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                            </a>
-                            <a href="#"class="product-price">Sneaker</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="product-item">
-                        <div class="image-top">
-                            <a href="#" class="thumbs-up">
-                                <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/ec6a133ce53d435aacc02e7d9f4ccf0d_9366/Giay_Ultraboost_1.0_ATR_DJen_IG3088_01_standard.jpg" alt="">
-                                <div class="overlay"></div>
-                                <div class="button"><a href="info.ejs">Mua Ngay</a></div>
-                            </a>
-
-                        </div>
-                        <div class="information">
-                            <a href="#"class="product-sub-title">Sneaker</a>
-                            <a href="#"class="product-name">Sneaker</a>
-                            <a href="">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                            </a>
-                            <a href="#"class="product-price">Sneaker</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="product-item">
-                        <div class="image-top">
-                            <a href="#" class="thumbs-up">
-                                <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/88b47f9163414dd1885c2839b3dc7379_9366/Giay_Avryn_DJen_IF8189_01_standard.jpg" alt="">
-                                <div class="overlay"></div>
-                                <div class="button"><a href="info.ejs">Mua Ngay</a></div>
-                            </a>
-
-                        </div>
-                        <div class="information">
-                            <a href="#"class="product-sub-title">Sneaker</a>
-                            <a href="#"class="product-name">Sneaker</a>
-                            <a href="">
-                                <span class="fa three-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                            </a>
-                            <a href="#"class="product-price">Sneaker</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="product-item">
-                        <div class="image-top">
-                            <a href="#" class="thumbs-up">
-                                <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/5b35c895cfb6433d8e433b58463e560b_9366/Giay_Stan_Smith_CS_Be_ID2041_01_standard.jpg" alt="">
-                                <div class="overlay"></div>
-                                <div class="button"><a href="info.ejs">Mua Ngay</a></div>
-                            </a>
-                        </div>
-                        <div class="information">
-                            <a href="#"class="product-sub-title">Sneaker</a>
-                            <a href="#"class="product-name">Sneaker</a>
-                            <a href="">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                            </a>
-                            <a href="#"class="product-price">Sneaker</a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <script src="/public/js/product.js"></script>
+    <script src="/js/product.js"></script>
 </body>
 </html>

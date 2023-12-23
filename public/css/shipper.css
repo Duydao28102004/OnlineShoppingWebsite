@@ -15,56 +15,24 @@ body {
 }
 
 .ordercontainer {
-    max-width: 70%;
     width: 70%;
     text-align: center;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-right: 5px;
+    margin-left: 10px;
     justify-content: space-between; /* Space between children */
     align-items: center; /* Center vertically */
 }
 
 .ordercontainer h1 {
     font-size: 30px;
-}
-
-.usercontainer {
-    max-width: 30%;
-    text-align: center;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    align-items: center;
-    margin-left: 5px;
-    height: fit-content;
-}
-
-.usercontainer h1 {
     color: #333;
-    display: inline-block; /* Set display to inline-block */
-    margin-right: 10px; /* Add some margin between h1 and img */
-    max-width: 70%;
-    font-size: 30px;
 }
 
 p {
     font-size: 18px;
     margin-bottom: 20px;
-}
-
-.usercontainer img {
-    width: 65px;
-    height: 65px;
-    height: auto;
-    border-radius: 50%;
-    margin-top: 20px;
-    display: inline-block; /* Set display to inline-block */
-}
-
-.ordercontainer h1 {
-    color: #333;
 }
 
 .orderdetail {
@@ -80,18 +48,18 @@ p {
     font-size: 16px;
     margin: 5px 0;
 }
-
-.orderdetail button {
+.orderdetail form button {
     background-color: #4CAF50;
     color: white;
     padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    height: 100%;
 }
-
-.orderdetail button:hover {
+.orderdetail form button:hover {
     background-color: #45a049;
+    transition: 1s;
 }
 
 .orderinfo {

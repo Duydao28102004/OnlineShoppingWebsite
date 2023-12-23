@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/public/css/register.css">
+    <link rel="stylesheet" type="text/css" href="/css/register.css">
     <link rel="icon" type="image/x-icon" href="/images/icon.png">
     <title>Register</title>
 </head>
@@ -13,7 +13,7 @@
         
         <div class="register-content">
             <h1>Shopme</h1>
-            <form id="register-form">
+            <form id="register-form" action="/register" method="POST">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
                 <span id="username-error" class="error-message"></span>
@@ -25,12 +25,12 @@
                     <option value="" disabled selected>--------------User Role--------------</option>
                     <option value="shipper">shipper</option>
                     <option value="seller">seller</option>
-                    <option value="custommer">custommer</option>
+                    <option value="customer">customer</option>
                 </select>
                 <p>Already have an account? <a href="/login" class="loginLink">Login here</a></p>
                 <button class="register-button" type="submit">Register!</button>
             </form>
-            <p id="error-message" class="error-message"></p>
+            <p id="error-message" class="error-message"><%= error %></p>
         </div>
         <img class="login-image"src="/images/images.png">
     </div>
