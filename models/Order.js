@@ -2,7 +2,6 @@ const {Schema, model} = require("../db/connection") // import Schema & model
 
 const OrderSchema = new Schema({
     customername: {type: String, required: true, unique: false},
-    // products: [{type: Schema.Types.ObjectId, ref: 'Product'}],
     products: {type: String, unique: false},
     address:{type: String, required: true, unique: false},
     status: {type: String, required: true, unique: false}

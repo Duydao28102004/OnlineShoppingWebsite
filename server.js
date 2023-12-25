@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const session = require('express-session');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 const authentication = require('./routes/authentication');
 const redirect = require('./routes/redirect');
@@ -17,10 +18,9 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }));
-
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'public', 'views'));
-
+app.use(bodyParser.json({ limit: '50mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended : false}));
 

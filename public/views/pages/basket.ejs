@@ -23,8 +23,14 @@
                     <p>Tax: $<span id="tax">0.00</span></p>
                     <hr>
                     <p>Total Cost: $<span id="total-cost">0.00</span></p>
+                    <div class="checkout-details">
+                        <!-- ... -->
+                        <p>Enter your address:</p>
+                        <input type="text" id="address-input" />
+                        <!-- ... -->
+                    </div>
                 </div>
-                <button id="checkout-button" onclick="checkout()">Proceed to Checkout</button>
+                <button id="checkout-button" onclick="sendBasketToServer()">Proceed to Checkout</button>
             </div>
         </div>
     </div>

@@ -165,5 +165,44 @@ function updatePrice() {
     TotalCostElement.textContent = totalCost.toFixed(2);
 }
 
+function sendBasketToServer() {
+    const productPrice = calculateProductPrice();
+    const tax = calculateTax();
+    const shippingFee = 8.00;
+    const totalCost = productPrice + tax + shippingFee;
+    let addressInput = document.getElementById('address-input');
+    let address = addressInput.value;
+    const basket = JSON.parse(localStorage.getItem('basket')) || [];
+
+    const dataToSend = {
+        basket: basket,
+        totalCost: totalCost,
+        address: address,
+    };
+    console.log(dataToSend);
+
+    // Make a POST request to the server
+    fetch('http://localhost:3000/api/submit-basket', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataToSend),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to send basket to the server');
+        }
+        // Optional: You can handle the server response here if needed
+        return response.json();
+    })
+    .then(data => {
+        console.log('Basket sent successfully:', data);
+    })
+    .catch(error => {
+        console.error('Error sending basket to the server:', error);
+    });
+}
+
 // Call the function to update the total price whenever needed
 updatePrice();
