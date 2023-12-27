@@ -1,6 +1,3 @@
-// basket.js
-
-// Function to render the basket
 function renderBasket() {
     // Get the existing basket from local storage or create an empty one
     const basket = JSON.parse(localStorage.getItem('basket')) || [];
@@ -163,6 +160,55 @@ function updatePrice() {
     
     const TotalCostElement = document.getElementById("total-cost");
     TotalCostElement.textContent = totalCost.toFixed(2);
+}
+
+function sendBasketToServer() {
+    const productPrice = calculateProductPrice();
+    const tax = calculateTax();
+    const shippingFee = 8.00;
+    const totalCost = productPrice + tax + shippingFee;
+    let addressInput = document.getElementById('address-input');
+    let address = addressInput.value;
+    const basket = JSON.parse(localStorage.getItem('basket')) || [];
+
+    const dataToSend = {
+        basket: basket,
+        totalCost: totalCost,
+        address: address,
+    };
+
+    // Make a POST request to the server
+    fetch('http://localhost:3000/api/submit-basket', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataToSend),
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Server Response:', data);
+
+            // Display the server response to the user
+            const messageContainer = document.getElementById('message-container');
+            
+            if (data.error) {
+                // Display the error message in red
+                messageContainer.textContent = data.error;
+                messageContainer.style.color = 'red';
+            } else {
+                // Display the success message in black
+                messageContainer.textContent = data.message;
+                messageContainer.style.color = 'green';
+            }
+        })
+        .catch(error => {
+            // Display the error message to the user in red
+            const messageContainer = document.getElementById('message-container');
+            messageContainer.textContent = 'Error sending basket to the server: ' + error.message;
+            messageContainer.style.color = 'red';
+            console.error('Error sending basket to the server:', error);
+        });
 }
 
 // Call the function to update the total price whenever needed
