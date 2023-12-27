@@ -44,17 +44,35 @@ router.post('/api/submit-basket', async (req, res) => {
                 console.error(`Product with ID ${productId} not found`);
                 continue; // Skip to the next iteration
             }
-            console.log(product.quantity);
-            // Update the product quantity
-            product.quantity -= quantity;
-            console.log(product.quantity);
+
+            // Check if there is enough quantity for the product
+            if (quantity > product.quantity) {
+                // Not enough quantity for the product
+                const errorMessage = `Not enough quantity available for ${productName}. Available quantity: ${product.quantity}`;
+                console.error(errorMessage);
+
+                // Send a response to the frontend indicating the error
+                return res.json({ error: errorMessage });
+            }
+
+            
             let productInfo = `${productName}: ${quantity}`;
         
             // Add the object to the products array
             products.push(productInfo.toString());
 
+            console.log(product.quantity);
+            // Update the product quantity
+            product.quantity -= quantity;
+            console.log(product.quantity);
+
             // Save the updated product to the database
-            await product.save();
+            if (product.quantity <= 0) {
+                await Product.deleteOne({ _id: productId });
+            } else {
+                // Save the updated product to the database
+                await product.save();
+            }
 
             // Log product information to console for demonstration
             console.log(`Product ID: ${productId}, Quantity: ${quantity}`);
@@ -69,7 +87,7 @@ router.post('/api/submit-basket', async (req, res) => {
         console.log(newOrder);
 
         // Send a success response
-        res.json({ message: 'Basket data received successfully' });
+        res.json({ message: 'Order received successfully' });
         console.log("receive");
     } catch (error) {
         console.error('Error handling basket submission:', error);

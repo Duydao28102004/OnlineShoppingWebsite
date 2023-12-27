@@ -179,7 +179,6 @@ function sendBasketToServer() {
         totalCost: totalCost,
         address: address,
     };
-    console.log(dataToSend);
 
     // Make a POST request to the server
     fetch('http://localhost:3000/api/submit-basket', {
@@ -189,20 +188,36 @@ function sendBasketToServer() {
         },
         body: JSON.stringify(dataToSend),
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Failed to send basket to the server');
-        }
-        // Optional: You can handle the server response here if needed
-        return response.json();
-    })
-    .then(data => {
-        console.log('Basket sent successfully:', data);
-    })
-    .catch(error => {
-        console.error('Error sending basket to the server:', error);
-    });
+        .then(response => response.json())
+        .then(data => {
+            console.log('Server Response:', data);
+
+            // Display the server response to the user
+            const messageContainer = document.getElementById('message-container');
+            
+            if (data.error) {
+                // Display the error message in red
+                messageContainer.textContent = data.error;
+                messageContainer.style.color = 'red';
+            } else {
+                // Display the success message in black
+                messageContainer.textContent = data.message;
+                messageContainer.style.color = 'green';
+            }
+        })
+        .catch(error => {
+            // Display the error message to the user in red
+            const messageContainer = document.getElementById('message-container');
+            messageContainer.textContent = 'Error sending basket to the server: ' + error.message;
+            messageContainer.style.color = 'red';
+            console.error('Error sending basket to the server:', error);
+        });
 }
+
+
+
+
+
 
 // Call the function to update the total price whenever needed
 updatePrice();
