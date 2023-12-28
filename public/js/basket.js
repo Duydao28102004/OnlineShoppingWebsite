@@ -214,9 +214,15 @@ function sendBasketToServer() {
         });
 }
 
+function resetBasket() {
+    // Clear the local storage
+    localStorage.clear();
 
+    // Log a message indicating that the basket has been reset
+    console.log('Basket has been reset.');
 
-
+    renderBasket();
+}
 
 
 // Call the function to update the total price whenever needed

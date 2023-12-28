@@ -26,6 +26,7 @@ function addToBasket(productId, productName ,productPrice, productImage, quantit
 
     // Log the basket content to the console
     console.log('Basket:', basket);
+    checkBasket();
 }
 
 function resetBasket() {
@@ -35,3 +36,23 @@ function resetBasket() {
     // Log a message indicating that the basket has been reset
     console.log('Basket has been reset.');
 }
+
+// Function to check if the basket has products
+function checkBasket() {
+    // Get the existing basket from local storage or create an empty one
+    const basket = JSON.parse(localStorage.getItem('basket')) || [];
+
+    console.log(basket);
+    var reddot = document.querySelector('.reddot');
+
+    // If the basket has products, add the 'cartimage-with-product' class to the cart image
+    if (basket.length > 0) {
+        console.log('Basket has products');
+        reddot.classList.add('reddotdisplay');
+    } else {
+        reddot.classList.remove('reddotdisplay');
+    }
+}
+
+// Call the checkBasket function when the page loads
+checkBasket();

@@ -24,8 +24,13 @@
     <input type="file" id="image" name="image" accept="image/*" required>
     <br>
 
-    <label for="type">Product Type:</label>
-    <input type="text" id="type" name="type" required>
+    <label for="type">Type:</label>
+    <select name="type" id="type">
+        <option selected disabled>Select product type</option>
+        <option value="Electronic">Electronic</option>
+        <option value="Food">Food</option>
+        <option value="Clothing">Clothing</option>
+    </select>
     <br>
 
     <label for="price">Price:</label>

@@ -25,7 +25,12 @@
     <br>
 
     <label for="type">Product Type:</label>
-    <input type="text" id="type" name="type" placeholder="<%= product.type %>" value="<%= product.type %>">
+    <select id="type" name="type">
+        <option selected disabled>Select product type</option>
+        <option value="Electronic" <%= product.type === 'Electronic' ? 'selected' : '' %>>Electronic</option>
+        <option value="Food" <%= product.type === 'Food' ? 'selected' : '' %>>Food</option>
+        <option value="Clothing" <%= product.type === 'Clothing' ? 'selected' : '' %>>Clothing</option>
+    </select>
     <br>
 
     <label for="price">Price:</label>

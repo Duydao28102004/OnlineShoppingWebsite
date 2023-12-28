@@ -10,7 +10,7 @@ const redirect = require('./routes/redirect');
 const home = require('./routes/home');
 const shipper = require('./routes/shipper');
 const seller = require('./routes/seller');
-const customer = require('./routes/product');
+const customer = require('./routes/customer');
 const error = require('./routes/error');
 
 app.use(session({
