@@ -8,25 +8,31 @@
 </head>
 <body>
     <%- include('../components/header') %>
-    <main class="container">
-        <h1>Our array of products won't make you disappointed.</h1>
-        <section>
+    <div class="container">
+        <div class="header-section">
             <h1>All Products</h1>
-            <section class="all-products" id="all-products">
+            <a href="/basket">
+                <div class="cart-container">
+                    <img src="/images/cart.png" alt="cart" class="cartimage">
+                    <img src="/images/red.png" alt="reddot" class="reddot">
+                </div>
+            </a>
+        </div>
+        <section class="all-products" id="all-products">
             <% products.forEach(function(product) { %>
                 <div class="col">
-                    <img src="data:image/png;base64,<%= product.image %>" alt="<%= product.name %>" class="product-image">
-                    <h3><%= product.name %></h3>
-                    <p>Price: $<%= product.price ? product.price.toFixed(2) : 'N/A' %></p>
-                    <p>Rating: <%= product.rating %></p>
-                    <!-- <p><strong>Description:</strong> <%= product.description %></p> -->
+                    <a href="/product/<%= product._id %>" class="no-decoration">
+                        <img src="data:image/png;base64,<%= product.image %>" alt="<%= product.name %>" class="product-image">
+                        <h3><%= product.name %></h3>
+                        <p>Price: $<%= product.price ? product.price.toFixed(2) : 'N/A' %></p>
+                        <p>Rating: <%= product.rating %></p>
+                    </a>
                     <button onclick="addToBasket('<%= product._id %>', '<%= product.name %>', '<%= product.price %>','data:image/png;base64,<%= product.image %>', 1)">Add this product</button>
                 </div>
             <% }); %>
         </section>
-        <button onclick="resetBasket()">Clear product</button>
-    </main>
-
+    </div>
+    <%- include('../components/footer') %>
     <script src="/js/product.js"></script>
 </body>
 </html>

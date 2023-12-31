@@ -3,13 +3,14 @@ const express = require('express');
 const app = express();
 const session = require('express-session');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 const authentication = require('./routes/authentication');
 const redirect = require('./routes/redirect');
 const home = require('./routes/home');
 const shipper = require('./routes/shipper');
 const seller = require('./routes/seller');
-const customer = require('./routes/product');
+const customer = require('./routes/customer');
 const error = require('./routes/error');
 
 app.use(session({
@@ -17,10 +18,9 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }));
-
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'public', 'views'));
-
+app.use(bodyParser.json({ limit: '50mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended : false}));
 
@@ -32,11 +32,11 @@ app.use('/', seller);
 app.use('/', customer);
 app.use('/', error);
 
-app.get('/testaddorder', (req, res) => {
-  res.render('pages/testaddorder', { pageTitle: 'Add New Order'});
+app.get('/addorder', (req, res) => {
+  res.render('pages/addorder', { pageTitle: 'Add New Order'});
 });
 
-app.post('/testaddorder', async (req, res) => {
+app.post('/addorder', async (req, res) => {
   try {
       const orders = await Order.create(req.body);
       console.log('Orders created successfully');
