@@ -3,11 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
     <title>Welcome to Shopme</title>
 </head>
 <body>
     <%- include('../components/header') %>
-    <p>Hello guest</p>
+    <img src="/images/banner.png" alt="promo_banner" class="promo_banner">
+    <a href="/login" class="no-decoration">
+        <div class="container">
+            <h1>Our products</h1>
+            <section class="all-products" id="all-products">
+                <% products.forEach(function(product) { %>
+                    <div class="col">
+                        <img src="data:image/png;base64,<%= product.image %>" alt="<%= product.name %>" class="product-image">
+                        <h3><%= product.name %></h3>
+                        <p>Price: $<%= product.price ? product.price.toFixed(2) : 'N/A' %></p>
+                        <p>Rating: <%= product.rating %></p>
+                    </div>
+                <% }); %>
+            </section>
+        </div>
+    </a>
     <form action="/logout" method="GET">
         <button type="submit">Logout</button>
     </form>

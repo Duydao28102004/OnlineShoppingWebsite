@@ -1,0 +1,64 @@
+.promo_banner {
+    height: 60%;
+    width: 60%;
+    display: block;
+    margin: 0 auto;
+}
+
+.container {
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 5px;
+    width: 60%;
+    margin: 20px auto;
+}
+
+.all-products {
+    display: flex;
+    margin: 0px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.col {
+    width: 25%;
+    margin: 10px;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.col:hover {
+    transform: scale(1.05);
+}
+
+.col img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.col h3 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.col p {
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.col strong {
+    color: #333;
+}
+
+.no-decoration {
+    cursor: default;
+    color: black;
+    text-decoration: none;
+}
