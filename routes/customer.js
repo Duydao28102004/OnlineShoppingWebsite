@@ -94,4 +94,15 @@ router.post('/api/submit-basket', async (req, res) => {
     }
 });
 
+router.get('/product/:id', async (req, res) => {
+    try {
+        const productId = req.params.id;
+        const product = await Product.findById(productId);
+        res.render('pages/productdetail', { pageTitle: 'Product', product, error: null});
+    } catch (error) {
+        console.error('Error fetching product by ID:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
 module.exports = router;
