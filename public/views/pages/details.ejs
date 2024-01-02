@@ -21,6 +21,20 @@
             <div id="notification"></div>
         </div>
     </div>
+    <div class="similar-products-section">
+        <h2>You may also like these:</h2>
+        <div class="similar-products-container">
+            <% similarProducts.forEach(similarProduct => { %>
+                <div class="similar-product">
+                    <a href="/product/<%= similarProduct._id %>" class="no-decoration">
+                        <img class="similar-product-image" src="data:image/png;base64,<%= similarProduct.image %>" alt="<%= similarProduct.name %>">
+                        <h3 class="similar-product-title"><%= similarProduct.name %></h3>
+                        <p class="similar-product-price"><%= similarProduct.price %>$</p>
+                    </a>
+                    </div>
+            <% }); %>
+        </div>
+    </div>
     <%- include('../components/footer') %>
     <script src="/js/productdetail.js"></script>
 </body>

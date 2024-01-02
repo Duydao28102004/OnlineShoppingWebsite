@@ -10,7 +10,7 @@
 <%- include('../components/header') %>
 <h1>Update a Product</h1>
 
-<form action="/seller/updateproduct/<%= product._id %>" method="post">
+<form action="/seller/updateproduct/<%= product._id %>" method="post" enctype="multipart/form-data">
     <input type="text" id="username" name="username" value="<%= user.username %>" required hidden>
     <br>
 
@@ -23,8 +23,17 @@
     <img src="data:image/png;base64,<%= product.image %>" alt="<%= product.name %>" class="product-image">
     <br>
 
+    <label for="newImage">New Image:</label>
+    <input type="file" id="newImage" name="newImage">
+    <br>
+
     <label for="type">Product Type:</label>
-    <input type="text" id="type" name="type" placeholder="<%= product.type %>" value="<%= product.type %>">
+    <select id="type" name="type">
+        <option selected disabled>Select product type</option>
+        <option value="Electronic" <%= product.type === 'Electronic' ? 'selected' : '' %>>Electronic</option>
+        <option value="Food" <%= product.type === 'Food' ? 'selected' : '' %>>Food</option>
+        <option value="Clothing" <%= product.type === 'Clothing' ? 'selected' : '' %>>Clothing</option>
+    </select>
     <br>
 
     <label for="price">Price:</label>
@@ -46,6 +55,7 @@
     <!-- Submit Button -->
     <button type="submit">Update Product</button>
 </form>
+<%- include('../components/footer') %>
 
 </body>
 </html>

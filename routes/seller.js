@@ -19,7 +19,7 @@ router.get('/seller', requireLogin, isSeller, async (req,res) => {
       console.error('Error:', error);
       res.status(500).json({ error: 'Internal server error.' });
   }
-  });
+});
   
 router.get('/seller/addproduct',requireLogin, isSeller, (req,res) => {
     const user = req.session.user;
@@ -72,33 +72,40 @@ router.get('/seller/updateproduct/:id', requireLogin, isSeller, async (req, res)
   }
 })
 
-router.post('/seller/updateproduct/:productId', requireLogin, isSeller, async (req, res) => {
+router.post('/seller/updateproduct/:productId', requireLogin, isSeller, upload.single('newImage'), async (req, res) => {
   try {
-      const productId = req.params.productId;
+    const productId = req.params.productId;
 
-      // Find the product to update
-      const productToUpdate = await Product.findById(productId);
+    // Find the product to update
+    const productToUpdate = await Product.findById(productId);
 
-      // Check if the product is found
-      if (!productToUpdate) {
-          return res.status(404).json({ error: 'Product not found.' });
-      }
-      console.log(req.body.name, req.body.type, req.body.price, req.body.quantity, req.body.rating, req.body.description)
-      // Update other fields based on the request body
-      productToUpdate.name = req.body.name || productToUpdate.name;
-      productToUpdate.type = req.body.type || productToUpdate.type;
-      productToUpdate.price = req.body.price || productToUpdate.price;
-      productToUpdate.quantity = req.body.quantity || productToUpdate.quantity;
-      productToUpdate.rating = req.body.rating || productToUpdate.rating;
-      productToUpdate.description = req.body.description || productToUpdate.description;
-      console.log(productToUpdate);
-      // Save the updated product to the database
-      const updatedProduct = await productToUpdate.save();
+    // Check if the product is found
+    if (!productToUpdate) {
+      return res.status(404).json({ error: 'Product not found.' });
+    }
 
-      res.redirect('/seller');
+    // Check if a new image is provided
+    if (req.file) {
+      const newImageData = req.file.buffer;
+      const newBase64Data = newImageData.toString('base64');
+      productToUpdate.image = newBase64Data;
+    }
+
+    // Update other fields based on the request body
+    productToUpdate.name = req.body.name || productToUpdate.name;
+    productToUpdate.type = req.body.type || productToUpdate.type;
+    productToUpdate.price = req.body.price || productToUpdate.price;
+    productToUpdate.quantity = req.body.quantity || productToUpdate.quantity;
+    productToUpdate.rating = req.body.rating || productToUpdate.rating;
+    productToUpdate.description = req.body.description || productToUpdate.description;
+
+    // Save the updated product to the database
+    const updatedProduct = await productToUpdate.save();
+
+    res.redirect('/seller');
   } catch (error) {
-      console.error('Error:', error);
-      res.status(500).json({ error: 'Internal server error.' });
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Internal server error.' });
   }
 });
 
