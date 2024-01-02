@@ -51,3 +51,49 @@ button {
 button:hover {
     background-color: #45a049;
 }
+
+.similar-products-section {
+    max-width: 68%;
+    margin: 10px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.similar-products-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.similar-product {
+    width: calc(25% - 20px); /* 4 similar products in a row with some spacing */
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.similar-product img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.similar-product h3 {
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+
+.similar-product p {
+    margin-top: 5px;
+    font-size: 1rem;
+}
+
+.no-decoration {
+    color: black;
+    text-decoration: none;
+}
+

@@ -98,11 +98,25 @@ router.get('/product/:id', async (req, res) => {
     try {
         const productId = req.params.id;
         const product = await Product.findById(productId);
-        res.render('pages/productdetail', { pageTitle: 'Product', product, error: null});
+        if (!product) {
+            return res.status(404).send('Product not found');
+        }
+
+        console.log(product.type);
+        // Find 4 random products with the same type but different from the current product
+        let similarProducts = await Product.aggregate([
+            { $match: { _id: { $ne: product._id }} },
+            { $sample: { size: 4 } }
+        ]);
+
+        console.log(similarProducts);
+
+        res.render('pages/productdetail', { pageTitle: 'Product', similarProducts, product, error: null });
     } catch (error) {
         console.error('Error fetching product by ID:', error);
         res.status(500).send('Internal Server Error');
     }
 });
+
 
 module.exports = router;
