@@ -29,7 +29,7 @@
         <div class="product-details">
             <h1><%= product.name %></h1>
             <p>Type: <%= product.type %></p>
-            <p>Price: <%= product.price %></p>
+            <p>Price: <%= product.price %>$</p>
             <p>Quantity: <%= product.quantity %></p>
             <p>Rating: <%= product.rating %></p>
             <p>Description: <%= product.description %></p>
@@ -44,8 +44,9 @@
                 <div class="similar-product">
                     <a href="/product/<%= similarProduct._id %>" class="no-decoration">
                         <img class="similar-product-image" src="data:image/png;base64,<%= similarProduct.image %>" alt="<%= similarProduct.name %>">
-                        <h3 class="similar-product-title"><%= similarProduct.name %></h3>
-                        <p class="similar-product-price"><%= similarProduct.price %>$</p>
+                        <h3><%= similarProduct.name %></h3>
+                        <p>Price: <%= similarProduct.price %>$</p>
+                        <p>Rating: <%= similarProduct.rating %></p>
                     </a>
                     </div>
             <% }); %>
