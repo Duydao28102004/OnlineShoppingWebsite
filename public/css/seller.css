@@ -112,3 +112,29 @@ body {
     background-color: #cc0000;
     transition: 1s;
 }
+
+@media screen and (max-width: 600px) {
+    .components {
+        flex-direction: column;
+        max-width: 100%;
+    }
+
+    .productcontainer {
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 15px;
+    }
+
+    .usercontainer {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .product-list {
+        width: 100%;
+    }
+
+    .product-item {
+        width: 100%;
+    }
+}

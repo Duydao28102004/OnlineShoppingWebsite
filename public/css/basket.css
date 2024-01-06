@@ -1,4 +1,11 @@
 /* Add this to your CSS file or style section */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
 .components {
     display: flex; /* Use flexbox to place children in a row */
     justify-content: space-between; /* Add space between the children */
@@ -59,7 +66,6 @@
     margin: 0px auto;
 }
 .checkout-container {
-    width: fit-content;
     background-color: #f9f9f9;
     padding: 20px;
     border: 1px solid #ccc;
@@ -75,6 +81,12 @@
     margin: 10px 0;
 }
 
+.checkout-details input {
+    margin: 10px;
+    width: 80%;
+    border: 1px solid #ccc;
+}
+
 hr {
     border: 1px solid #ddd;
 }
@@ -87,8 +99,62 @@ hr {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    margin-bottom: 15px;
+    width: 70%;
+}
+
+#reset-button {
+    background-color: #ee3c3c;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 15px;
+    width: 70%;
 }
 
 #checkout-button:hover {
     background-color: #45a049;
+}
+
+#reset-button:hover {
+    background-color: #ee5c5c;
+}
+
+.action-button button {
+    width: 70%;
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 15px;
+}
+  
+.action-button button:hover {
+    background-color: #2980b9;
+}
+
+@media screen and (max-width: 600px) {
+    .components {
+        flex-direction: column;
+        max-width: 100%;
+    }
+    .product-section {
+        width: 80%;
+        margin-bottom: 20px;
+        margin-left: 18px;
+    }
+    .checkout-section {
+        width: 90%;
+    }
+    .basket-item {
+        flex-direction: column;
+    }
+    
 }

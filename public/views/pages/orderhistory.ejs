@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" type="text/css" href="/css/orderhistory.css">
+</head>
+<body>
+    <%- include('../components/header') %>
+    
+    <div class="ordercontainer">
+        <h1>Orders</h1>
+        <% if (orders.length > 0) { %>
+            <% orders.forEach((order, index) => { %>
+                <div class="orderdetail">
+                  <h2>Order #<%= index + 1 %></h2> <!-- Fix: Use index directly without declaring it -->
+                  <div class="orderinfo">
+                    <p>Customer name: <%= order.customername %></p>
+                    <p>Product:</p>
+                    <% order.products.forEach(product => { %>
+                      <div class="product-detail">
+                        <img src="data:image/png;base64,<%= product.productImage %>" alt="<%= product.name %>" class="product-image">
+                        <div class="product-info">
+                          <p>Product Name: <%= product.productName %></p>
+                          <p>Product Price: <%= product.productPrice %>$</p>
+                          <p>Quantity: <%= product.quantity %></p>
+                        </div>
+                      </div>
+                    <% }); %>
+                    <p>Address: <%= order.address %></p>
+                    <p>Order status: <%= order.status %></p>
+                    <p>Total cost: <%= order.totalCost %>$</p>
+                  </div>
+                </div>
+              <% }) %>
+            <form action="/customer" method="GET" class="action-button">
+                <button type="submit" >Back to home</button>
+            </form>
+              
+        <% } else { %>
+            <p>No orders available.</p>
+            <form action="/customer" method="GET" class="action-button">
+                <button type="submit" >Back to home</button>
+            </form>
+        <% } %>
+    </div>
+</body>
+</html>

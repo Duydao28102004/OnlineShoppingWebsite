@@ -70,12 +70,9 @@ router.post('/api/submit-basket', async (req, res) => {
                 // Send a response to the frontend indicating the error
                 return res.json({ error: errorMessage });
             }
-
-            
-            let productInfo = `${productName}: ${quantity}`;
         
             // Add the object to the products array
-            products.push(productInfo.toString());
+            products.push({productName: productName, productPrice: product.price, productImage: product.image, quantity: quantity});
 
             console.log(product.quantity);
             // Update the product quantity
@@ -95,7 +92,7 @@ router.post('/api/submit-basket', async (req, res) => {
         }
         const newOrder = await Order.create({
             customername: user.username,
-            products: products.toString(),
+            products: products,
             address: address,
             status: "delivery",
             totalCost: totalCost
@@ -135,5 +132,21 @@ router.get('/product/:id', async (req, res) => {
     }
 });
 
+router.get('/customer/order', requireLogin, isCustomer, async (req, res) => {
+    const user = req.session.user;
+    if (user) {
+        try {
+            console.log(user.username);
+            const orders = await Order.find({ customername: user.username });
+            console.log(orders);
+            res.render('pages/orderhistory', { pageTitle: 'Order', user, orders });
+        } catch {
+            console.error('Error fetching orders:', error);
+            res.status(500).send('Internal Server Error');
+        }
+    } else {
+        res.redirect('/');
+    }
+});
 
 module.exports = router;

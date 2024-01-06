@@ -32,7 +32,10 @@
                     <div id="message-container"></div>
                 </div>
                 <button id="checkout-button" onclick="sendBasketToServer()">Proceed to Checkout</button>
-                <button onclick="resetBasket()">Reset Basket</button>
+                <form action="/customer" method="GET" class="action-button">
+                    <button type="submit" >Back to home</button>
+                </form>
+                <button id="reset-button" onclick="resetBasket()">Reset Basket</button>
             </div>
         </div>
     </div>
