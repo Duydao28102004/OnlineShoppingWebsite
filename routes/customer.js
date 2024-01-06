@@ -5,17 +5,32 @@ const { requireLogin, isCustomer } = require('./middleware');
 const router = express.Router();
 
 const multer = require('multer');
+const e = require('express');
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 router.get('/customer', requireLogin, isCustomer, async (req, res) => {
     try {
-        // Fetch all products from the database
-        const products = await Product.find();
-  
-        // Render the EJS template with the product data
-        res.render('pages/product', { pageTitle: 'Our Products', products, error: null});
+        const user = req.session.user;
+        const filter = req.query.filter;
+        console.log(filter);
+        const category = req.query.category;
+        console.log(category);
+        let products;
+        if (!filter || filter === 'all') {
+            products = await Product.find();
+        } else if (filter === 'lowestprice') {
+            products = await Product.find().sort({ price: 1 });
+        } else if (filter === 'highestprice') {
+            products = await Product.find().sort({ price: -1 });
+        } else if (filter === 'rating') {
+            products = await Product.find().sort({ rating: -1 });
+        }
+        if (category && category !== 'all') {
+            products = products.filter(product => product.type === category);
+        }
+        res.render('pages/product', { pageTitle: 'Customer', user, products, filter, category });
     } catch (error) {
         console.error('Error fetching products:', error);
         res.status(500).send('Internal Server Error');
@@ -40,8 +55,10 @@ router.post('/api/submit-basket', async (req, res) => {
             const product = await Product.findById(productId);
 
             if (!product) {
-                console.error(`Product with ID ${productId} not found`);
-                continue; // Skip to the next iteration
+                const errorMessage = `Product ${productName} is unavailable`;
+                console.error(errorMessage);
+
+                return res.json({ error: errorMessage });
             }
 
             // Check if there is enough quantity for the product
@@ -105,7 +122,7 @@ router.get('/product/:id', async (req, res) => {
         console.log(product.type);
         // Find 4 random products with the same type but different from the current product
         let similarProducts = await Product.aggregate([
-            { $match: { _id: { $ne: product._id }} },
+            { $match: { _id: { $ne: product._id }, type: product.type } },
             { $sample: { size: 4 } }
         ]);
 

@@ -44,20 +44,29 @@ body {
     display: block;
 }
 
+.filter-title {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.filter-select {
+    display: inline-block;
+}
+
 h1 {
     text-align: center;
     color: #333;
 }
 
-.all-products {
+.all-products {  
     display: flex;
-    margin: 0px;
+    margin: 0px auto;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: left;
 }
 
 .col {
-    width: 25%;
+    width: 21%;
     margin: 10px;
     background-color: #fff;
     padding: 5px;
@@ -99,6 +108,21 @@ footer {
 .no-decoration {
     color: black;
     text-decoration: none;
+}
+
+.container form {
+    margin-left: 10px;
+}
+
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 20px;
+    background-color: #4CAF50;
+    color: white;
+    opacity: 0.9;
+    transition: opacity 0.3s;
 }
 
 /* Responsive styles for smartphones */

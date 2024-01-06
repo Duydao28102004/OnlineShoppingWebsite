@@ -25,16 +25,23 @@ function addToBasket(productId, productName ,productPrice, productImage, quantit
     localStorage.setItem('basket', JSON.stringify(basket));
 
     // Log the basket content to the console
-    console.log('Basket:', basket);
+    console.log('Basket:', basket); 
+    notify('Product added to basket');
     checkBasket();
 }
 
-function resetBasket() {
-    // Clear the local storage
-    localStorage.clear();
+function notify(message) {
+    const notification = document.createElement('div');
+    notification.textContent = message;
+    notification.className = 'notification';
+    document.body.appendChild(notification);
+    setTimeout(() => {
+        document.body.removeChild(notification);
+    }, 3000);
+}
 
-    // Log a message indicating that the basket has been reset
-    console.log('Basket has been reset.');
+function deleteLocalStorage() {
+    localStorage.clear();
 }
 
 // Function to check if the basket has products
@@ -52,6 +59,29 @@ function checkBasket() {
     } else {
         reddot.classList.remove('reddotdisplay');
     }
+}
+
+// Get the query parameters from the page URL
+const urlParams = new URLSearchParams(window.location.search);
+const filter = urlParams.get('filter');
+const category = urlParams.get('category');
+
+// Set the selected options to the query parameters
+if (filter) {
+    document.getElementById('filter').value = filter;
+}
+if (category) {
+    document.getElementById('category').value = category;
+}
+
+// Add event listeners to the select elements
+document.getElementById('filter').addEventListener('change', updateQueryParams);
+document.getElementById('category').addEventListener('change', updateQueryParams);
+
+function updateQueryParams() {
+    const filter = document.getElementById('filter').value;
+    const category = document.getElementById('category').value;
+    window.location.href = '/customer?filter=' + filter + '&category=' + category;
 }
 
 // Call the checkBasket function when the page loads

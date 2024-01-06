@@ -9,14 +9,42 @@
 <body>
     <%- include('../components/header') %>
     <div class="container">
+        
         <div class="header-section">
-            <h1>All Products</h1>
+            <h1>Welcome back, <%= user.username %></h1>
             <a href="/basket">
                 <div class="cart-container">
                     <img src="/images/cart.png" alt="cart" class="cartimage">
                     <img src="/images/red.png" alt="reddot" class="reddot">
                 </div>
             </a>
+        </div>
+        <form action="/logout" method="GET">
+            <button type="submit" onclick="deleteLocalStorage()">Logout</button>
+        </form>
+        <div class="filter">
+            <div class="filter-title">
+                <p>Filter by: </p>
+            </div>
+            <div class="filter-select">
+                <select name="filter" id="filter">
+                    <option value="all">All</option>
+                    <option value="lowestprice">Lowest price</option>
+                    <option value="highestprice">Highest price</option>
+                    <option value="rating">Rating</option>
+                </select>
+            </div>
+            <div class="filter-title">
+                <p>Category: </p>
+            </div>
+            <div class="filter-select">
+                <select name="category" id="category">
+                    <option value="all">All</option>
+                    <option value="Electronic">Electronic</option>
+                    <option value="Food">Food</option>
+                    <option value="Clothing">Clothing</option>
+                </select>
+            </div>
         </div>
         <section class="all-products" id="all-products">
             <% products.forEach(function(product) { %>
