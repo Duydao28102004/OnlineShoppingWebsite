@@ -108,7 +108,7 @@ router.post('/api/submit-basket', async (req, res) => {
     }
 });
 
-router.get('/product/:id', async (req, res) => {
+router.get('/product/:id', requireLogin, isCustomer, async (req, res) => {
     try {
         const productId = req.params.id;
         const product = await Product.findById(productId);

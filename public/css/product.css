@@ -166,6 +166,11 @@ footer {
     background-color: #219d54;
 }
 
+.star {
+    width: 16px;
+    height: 16px;
+}
+
 
 /* Responsive styles for tablets */
 @media only screen and (max-width: 600px) {

@@ -31,7 +31,7 @@
             <p>Type: <%= product.type %></p>
             <p>Price: <%= product.price %>$</p>
             <p>Quantity: <%= product.quantity %></p>
-            <p>Rating: <%= product.rating %></p>
+            <p>Rating: <%= product.rating %><img src="/images/star.png" alt="star" class="star"></p>
             <p>Description: <%= product.description %></p>
             <button onclick="addToBasket('<%= product._id %>', '<%= product.name %>', '<%= product.price %>','data:image/png;base64,<%= product.image %>', 1)">Add this product</button>
             <div id="notification"></div>
@@ -46,7 +46,7 @@
                         <img class="similar-product-image" src="data:image/png;base64,<%= similarProduct.image %>" alt="<%= similarProduct.name %>">
                         <h3><%= similarProduct.name %></h3>
                         <p>Price: <%= similarProduct.price %>$</p>
-                        <p>Rating: <%= similarProduct.rating %></p>
+                        <p>Rating: <%= similarProduct.rating %><img src="/images/star.png" alt="star" class="star"></p>
                     </a>
                     </div>
             <% }); %>
