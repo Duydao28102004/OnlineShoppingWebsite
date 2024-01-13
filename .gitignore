@@ -1,14 +1,3 @@
 # Dependency directories
-node_modules/
+/node_modules
 
-# Optional: Logs and debugging files
-npm-debug.log
-yarn-error.log
-
-# Optional: Editor directories
-.vscode/
-.idea/
-
-# Optional: OS-specific files
-.DS_Store
-Thumbs.db

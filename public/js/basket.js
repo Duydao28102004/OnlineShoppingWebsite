@@ -200,9 +200,12 @@ function sendBasketToServer() {
                 messageContainer.textContent = data.error;
                 messageContainer.style.color = 'red';
             } else {
-                // Display the success message in black
+                // Display the success message in green
                 messageContainer.textContent = data.message;
                 messageContainer.style.color = 'green';
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 3000);
             }
         })
         .catch(error => {
