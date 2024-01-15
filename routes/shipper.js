@@ -4,8 +4,6 @@ const { requireLogin, isShipper } = require('./middleware');
 const router = express.Router();
 
 router.get('/shipper', requireLogin, isShipper, async (req, res) => {
-    const user = req.session.user;
-    if (user) {
       try {
         const orders = await Order.findOrdersByStatus('delivery');
         res.render('pages/shipper', {pageTitle: 'Shipper', user, orders });
@@ -13,9 +11,6 @@ router.get('/shipper', requireLogin, isShipper, async (req, res) => {
         console.error('Error fetching orders:', error);
         res.status(500).send('Internal Server Error');
       }
-    } else {
-      res.redirect('/');
-    }
   });
   
 router.post('/shipper', async (req, res) => {
