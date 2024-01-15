@@ -171,6 +171,9 @@ function sendBasketToServer() {
     const shippingFee = 8.00;
     const totalCost = productPrice + tax + shippingFee;
     let addressInput = document.getElementById('address-input');
+    let phoneNumberInput = document.getElementById('phone-number-input');
+
+    let phoneNumber = phoneNumberInput.value;
     let address = addressInput.value;
     const basket = JSON.parse(localStorage.getItem('basket')) || [];
 
@@ -178,6 +181,7 @@ function sendBasketToServer() {
         basket: basket,
         totalCost: totalCost,
         address: address,
+        phoneNumber: phoneNumber,
     };
 
     // Make a POST request to the server

@@ -32,21 +32,6 @@ app.use('/', seller);
 app.use('/', customer);
 app.use('/', error);
 
-app.get('/testaddorder', (req, res) => {
-  res.render('pages/testaddorder', { pageTitle: 'Add New Order'});
-});
-
-app.post('/testaddorder', async (req, res) => {
-  try {
-      const orders = await Order.create(req.body);
-      console.log('Orders created successfully');
-      res.redirect('/login');
-  } catch (error) {
-      console.error('Error adding new order:', error);
-      res.status(500).send('Internal Server Error');
-  }
-});
-
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:3000`);

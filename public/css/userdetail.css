@@ -14,13 +14,15 @@ body {
     align-items: center;
     margin-left: 5px;
     height: fit-content;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
 }
 
 .usercontainer h1 {
     color: #333;
-    font-size: 20px;
-    margin: 0px auto;
+    font-size: 25px;
+    margin: 0 auto;
 }
 
 .usercontainer img {
@@ -31,6 +33,11 @@ body {
     margin-top: 20px;
     display: flex;
     margin: 20px auto;
+}
+
+.usercontainer form {
+    width: 90%;
+    margin: 0 auto;
 }
 
 .usercontainer button {

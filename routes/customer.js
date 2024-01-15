@@ -44,8 +44,9 @@ router.get('/basket', requireLogin, isCustomer, (req, res) => {
 router.post('/api/submit-basket', async (req, res) => {
     try {
         user = req.session.user;
-        const { basket, totalCost, address } = req.body;
+        const { basket, totalCost, address, phoneNumber } = req.body;
         const products = [];
+        console.log(phoneNumber);
 
         for (const item of basket) {
             const productId = item.productId;
@@ -94,6 +95,7 @@ router.post('/api/submit-basket', async (req, res) => {
             customername: user.username,
             products: products,
             address: address,
+            phonenumber: phoneNumber,
             status: "delivery",
             totalCost: totalCost
         });

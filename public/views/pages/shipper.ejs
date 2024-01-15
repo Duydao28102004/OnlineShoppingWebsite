@@ -30,7 +30,8 @@
                             </div>
                           </div>
                         <% }); %>
-                        <p>Address: <%= order.address %></p>
+                        <p>Address: <%= order.address %>  <a href="https://www.google.com/maps/search/?api=1&query=<%= encodeURIComponent(order.address) %>" target="_blank">get direction</a></p>
+                        <p>Phone number: <%= order.phonenumber %></p>
                         <p>Order status: <%= order.status %></p>
                         <p>Total cost: <%= order.totalCost %>$</p>
                       </div>

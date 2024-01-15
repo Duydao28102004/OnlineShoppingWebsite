@@ -11,6 +11,7 @@ const OrderSchema = new Schema({
     customername: {type: String, required: true, unique: false},
     products: [ProductSchema],
     address:{type: String, required: true, unique: false},
+    phonenumber: {type: String, required: true, unique: false},
     status: {type: String, required: true, unique: false},
     totalCost: {type: Number, required: false, unique: false},
 })

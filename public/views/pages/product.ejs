@@ -20,12 +20,14 @@
             </a>
         </div>
         <div class="button-section">
-            <form action="/logout" method="GET" class="action-button">
-                <button type="submit" onclick="deleteLocalStorage()">Logout</button>
-            </form>
-            <form action="/customer/order" method="GET" class="action-button">
-                <button type="submit">Order History</button>
-            </form>
+            <div class="button">
+                <form action="/logout" method="GET" class="action-button">
+                    <button type="submit" onclick="deleteLocalStorage()">Logout</button>
+                </form>
+                <form action="/customer/order" method="GET" class="action-button">
+                    <button type="submit">Order History</button>
+                </form>
+            </div>
         </div>
         <div class="filter">
             <div class="filter-title">
@@ -51,18 +53,19 @@
                 </select>
             </div>
         </div>
-        <section class="all-products" id="all-products">
-            <% products.forEach(function(product) { %>
-                <div class="col">
-                    <a href="/product/<%= product._id %>" class="no-decoration">
-                        <img src="data:image/png;base64,<%= product.image %>" alt="<%= product.name %>" class="product-image">
-                        <h3><%= product.name %></h3>
-                        <p>Price: $<%= product.price ? product.price.toFixed(2) : 'N/A' %></p>
-                        <p>Rating: <%= product.rating %><img src="/images/star.png" alt="star" class="star"></p>
-                    </a>
-                    <button onclick="addToBasket('<%= product._id %>', '<%= product.name %>', '<%= product.price %>','data:image/png;base64,<%= product.image %>', 1)" class="add-to-basket-button">Add this product</button>                </div>
-            <% }); %>
-        </section>
+    </div>
+    <div class="product-container">
+        <% products.forEach(function(product) { %>
+            <div class="product">
+                <a href="/product/<%= product._id %>" class="no-decoration">
+                    <img src="data:image/png;base64,<%= product.image %>" alt="<%= product.name %>" class="product-image">
+                    <h3><%= product.name %></h3>
+                    <p>Price: $<%= product.price ? product.price.toFixed(2) : 'N/A' %></p>
+                    <p>Rating: <%= product.rating %><img src="/images/star.png" alt="star" class="star"></p>
+                </a>
+                <button onclick="addToBasket('<%= product._id %>', '<%= product.name %>', '<%= product.price %>','data:image/png;base64,<%= product.image %>', 1)" class="add-to-basket-button">Add this product</button>
+            </div>
+        <% }); %>
     </div>
 
     <script src="/js/product.js"></script>

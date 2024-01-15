@@ -52,6 +52,11 @@ body {
     margin: 0;
 }
 
+.button-section {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
 
 .action-button {
     margin-top: 10px;

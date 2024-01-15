@@ -1,6 +1,6 @@
 const mongoose = require("mongoose") //import fresh mongoose object
 const {log} = require("mercedlogger") // import merced logger
-const DATABASE_URL= "mongodb+srv://TungTT:ySAn8E1flmR7oOzY@cluster0.rtiqjut.mongodb.net/CommercialWebsite";
+const DATABASE_URL= "mongodb+srv://Admin:E6BkbG3jpNBEE7O2@test.qo8hcax.mongodb.net/";
 
 
 // CONNECT TO MONGO

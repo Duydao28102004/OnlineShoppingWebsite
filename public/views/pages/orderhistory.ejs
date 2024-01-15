@@ -29,21 +29,22 @@
                       </div>
                     <% }); %>
                     <p>Address: <%= order.address %></p>
+                    <p>Phone number: <%= order.phonenumber %></p>
                     <p>Order status: <%= order.status %></p>
                     <p>Total cost: <%= order.totalCost %>$</p>
                   </div>
                 </div>
               <% }) %>
-            <form action="/customer" method="GET" class="action-button">
-                <button type="submit" >Back to home</button>
-            </form>
               
         <% } else { %>
             <p>No orders available.</p>
-            <form action="/customer" method="GET" class="action-button">
-                <button type="submit" >Back to home</button>
-            </form>
+            
         <% } %>
+        <div class="button-section">
+          <form action="/customer" method="GET" class="action-button">
+            <button type="submit" > Back to home</button>
+          </form>
+        </div>
     </div>
 </body>
 </html>
