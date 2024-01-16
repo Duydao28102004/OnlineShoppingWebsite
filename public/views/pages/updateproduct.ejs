@@ -11,7 +11,7 @@
 <%- include('../components/header') %>
 <h1>Update a Product</h1>
 
-<form action="/seller/updateproduct/<%= product._id %>" method="post" enctype="multipart/form-data">
+<form action="/seller/updateproduct/<%= product._id %>" method="post" enctype="multipart/form-data" class="productform">
     <input type="text" id="username" name="username" value="<%= user.username %>" required hidden>
     <br>
 

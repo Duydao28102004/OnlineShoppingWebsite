@@ -159,7 +159,8 @@ strong {
     width: 70%;
     margin: 0px auto;
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
     background-color: white;
     padding: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -167,7 +168,7 @@ strong {
 }
 
 .product {
-    width: 25%;
+    width: 20%;
     height: fit-content;
     margin: 10px;
     background-color: white;
